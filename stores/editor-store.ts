@@ -20,6 +20,7 @@ import { checkConflicts } from "@/lib/pvz/conflicts";
 
 export type EditorTab =
   | "settings"
+  | "modules"
   | "waves"
   | "vasebreaker"
   | "izombie"
@@ -27,6 +28,8 @@ export type EditorTab =
   | "json";
 
 export type SaveStatus = "idle" | "saving" | "saved" | "error";
+
+const AUTO_SAVE_DELAY = 3000; // 3 秒自动保存
 
 interface EditorState {
   // Core data
@@ -43,6 +46,9 @@ interface EditorState {
 
   // Conflicts
   conflicts: ConflictRule[];
+
+  // Auto-save internals
+  autoSaveTimer: NodeJS.Timeout | null;
 
   // Actions
   loadLevel: (levelId: string) => Promise<void>;
@@ -87,10 +93,6 @@ function generateUniqueAlias(
   return `${baseAlias}${i}`;
 }
 
-function markDirty(state: Partial<EditorState>): Partial<EditorState> {
-  return { ...state, isDirty: true, saveStatus: "idle" as SaveStatus };
-}
-
 function cloneParsed(parsed: ParsedLevelData): ParsedLevelData {
   return { ...parsed };
 }
@@ -101,7 +103,24 @@ function getModuleObjclasses(parsed: ParsedLevelData): string[] {
 
 // --- Store ---
 
-export const useEditorStore = create<EditorState>((set, get) => ({
+export const useEditorStore = create<EditorState>((set, get) => {
+  // Helper to mark state as dirty and schedule auto-save
+  function markDirty(state: Partial<EditorState>): Partial<EditorState> {
+    const newState = { ...state, isDirty: true, saveStatus: "idle" as SaveStatus };
+
+    // Schedule auto-save
+    const currentTimer = get().autoSaveTimer;
+    if (currentTimer) {
+      clearTimeout(currentTimer);
+    }
+    const timer = setTimeout(() => {
+      get().save();
+    }, AUTO_SAVE_DELAY);
+
+    return { ...newState, autoSaveTimer: timer };
+  }
+
+  return {
   // Initial state
   levelId: null,
   levelName: "",
@@ -112,10 +131,17 @@ export const useEditorStore = create<EditorState>((set, get) => ({
   loading: false,
   error: null,
   conflicts: [],
+  autoSaveTimer: null,
 
   // --- Load level from API ---
   loadLevel: async (levelId: string) => {
-    set({ loading: true, error: null, levelId });
+    // Clear any pending auto-save timer from previous level
+    const currentTimer = get().autoSaveTimer;
+    if (currentTimer) {
+      clearTimeout(currentTimer);
+    }
+
+    set({ loading: true, error: null, levelId, autoSaveTimer: null });
     try {
       const res = await fetch(`/api/levels/${levelId}`);
       if (!res.ok) {
@@ -148,8 +174,14 @@ export const useEditorStore = create<EditorState>((set, get) => ({
 
   // --- Save to API ---
   save: async () => {
-    const { levelId, levelName, parsed } = get();
+    const { levelId, levelName, parsed, autoSaveTimer } = get();
     if (!levelId || !parsed) return;
+
+    // Clear pending auto-save timer
+    if (autoSaveTimer) {
+      clearTimeout(autoSaveTimer);
+      set({ autoSaveTimer: null });
+    }
 
     set({ saveStatus: "saving" });
     try {
@@ -435,4 +467,5 @@ export const useEditorStore = create<EditorState>((set, get) => ({
     const file = serializeLevel(parsed.allObjects);
     return JSON.stringify(file, null, 2);
   },
-}));
+};
+});

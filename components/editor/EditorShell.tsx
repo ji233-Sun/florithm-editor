@@ -4,6 +4,7 @@ import { useEffect, useCallback } from "react";
 import { useEditorStore } from "@/stores/editor-store";
 import { EditorToolbar } from "./EditorToolbar";
 import { SettingsTab } from "./tabs/SettingsTab";
+import { ModulesTab } from "./tabs/ModulesTab";
 import { WavesTab } from "./tabs/WavesTab";
 import { VaseBreakerTab } from "./tabs/VaseBreakerTab";
 import { IZombieTab } from "./tabs/IZombieTab";
@@ -13,6 +14,7 @@ import type { EditorTab } from "@/stores/editor-store";
 import {
   Loader2,
   Settings,
+  Package,
   Waves,
   FlaskConical,
   Skull,
@@ -27,6 +29,7 @@ interface EditorShellProps {
 
 const TAB_ICONS: Record<EditorTab, React.ComponentType<{ className?: string }>> = {
   settings: Settings,
+  modules: Package,
   waves: Waves,
   vasebreaker: FlaskConical,
   izombie: Skull,
@@ -41,6 +44,7 @@ export function EditorShell({ levelId }: EditorShellProps) {
     parsed,
     activeTab,
     isDirty,
+    autoSaveTimer,
     setActiveTab,
     loadLevel,
     save,
@@ -49,6 +53,15 @@ export function EditorShell({ levelId }: EditorShellProps) {
   useEffect(() => {
     loadLevel(levelId);
   }, [levelId, loadLevel]);
+
+  // Cleanup auto-save timer on unmount
+  useEffect(() => {
+    return () => {
+      if (autoSaveTimer) {
+        clearTimeout(autoSaveTimer);
+      }
+    };
+  }, [autoSaveTimer]);
 
   // Ctrl+S save shortcut
   const handleKeyDown = useCallback(
@@ -116,6 +129,7 @@ export function EditorShell({ levelId }: EditorShellProps) {
 
   const tabs: { id: EditorTab; label: string; show: boolean }[] = [
     { id: "settings", label: "设置", show: true },
+    { id: "modules", label: "模块", show: true },
     { id: "waves", label: "波次", show: true },
     { id: "vasebreaker", label: "砸罐子", show: hasVaseBreaker },
     { id: "izombie", label: "我是僵尸", show: hasIZombie },
@@ -157,6 +171,7 @@ export function EditorShell({ levelId }: EditorShellProps) {
       <div className="flex-1 overflow-y-auto bg-base-200/50">
         <div className="p-4 md:p-6">
           {activeTab === "settings" && <SettingsTab />}
+          {activeTab === "modules" && <ModulesTab />}
           {activeTab === "waves" && <WavesTab />}
           {activeTab === "vasebreaker" && hasVaseBreaker && <VaseBreakerTab />}
           {activeTab === "izombie" && hasIZombie && <IZombieTab />}

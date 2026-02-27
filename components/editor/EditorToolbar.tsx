@@ -13,7 +13,7 @@ import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 
 export function EditorToolbar() {
-  const { levelName, setLevelName, isDirty, saveStatus, save } =
+  const { levelName, setLevelName, isDirty, saveStatus, save, autoSaveTimer } =
     useEditorStore();
 
   const [editing, setEditing] = useState(false);
@@ -83,11 +83,13 @@ export function EditorToolbar() {
           </button>
         )}
 
-        {/* Dirty indicator */}
-        {isDirty && (
+        {/* Dirty / Auto-save indicator */}
+        {isDirty && saveStatus !== "saved" && (
           <div className="flex items-center gap-1.5 rounded-full bg-warning/10 px-2 py-0.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-warning" />
-            <span className="text-xs text-warning">未保存</span>
+            <span className="h-1.5 w-1.5 rounded-full bg-warning animate-pulse" />
+            <span className="text-xs text-warning">
+              {autoSaveTimer ? "自动保存中..." : "未保存"}
+            </span>
           </div>
         )}
       </div>
