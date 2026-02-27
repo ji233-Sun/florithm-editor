@@ -124,22 +124,29 @@ export function LevelMetadataForm() {
             <label className="mb-1.5 text-xs font-medium text-base-content/60">
               战利品 (Loot)
             </label>
-            <input
-              className="input input-bordered input-sm w-full"
+            <select
+              className="select select-bordered select-sm w-full"
               value={ld.Loot || ""}
               onChange={(e) => updateLevelDef({ Loot: e.target.value })}
-            />
+            >
+              <option value="RTID(DefaultLoot@LevelModules)">默认掉落 (DefaultLoot)</option>
+              <option value="RTID(NoLoot@LevelModules)">无掉落 (NoLoot)</option>
+            </select>
           </div>
 
           <div className="form-control">
             <label className="mb-1.5 text-xs font-medium text-base-content/60">
               音乐类型
             </label>
-            <input
-              className="input input-bordered input-sm w-full"
+            <select
+              className="select select-bordered select-sm w-full"
               value={ld.MusicType || ""}
               onChange={(e) => updateLevelDef({ MusicType: e.target.value })}
-            />
+            >
+              <option value="">默认</option>
+              <option value="MiniGame_A">小游戏 A (MiniGame_A)</option>
+              <option value="MiniGame_B">小游戏 B (MiniGame_B)</option>
+            </select>
           </div>
         </div>
 
