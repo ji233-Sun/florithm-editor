@@ -548,7 +548,7 @@ export const useEditorStore = create<EditorState>((set, get) => {
       : parsed.allObjects;
 
     const file = serializeLevel(filteredObjects);
-    return JSON.stringify(file, null, 2);
+    return JSON.stringify(file, (_key, value) => value === null ? undefined : value, 2);
   },
 };
 });
