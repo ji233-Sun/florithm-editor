@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo, useRef } from "react";
-import { Search, X, ChevronDown, Leaf } from "lucide-react";
+import { Search, X, ChevronDown, Leaf, ChevronLeft, ChevronRight } from "lucide-react";
 import type { FieldDefinition } from "@/lib/pvz/types";
 
 interface PlantRtidFieldProps {
@@ -53,8 +53,11 @@ export function PlantRtidField({
   const [search, setSearch] = useState("");
   const [open, setOpen] = useState(false);
   const [activeTag, setActiveTag] = useState<string | null>(null);
+  const [page, setPage] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
+
+  const PAGE_SIZE = 40;
 
   useEffect(() => {
     fetchPlants().then(setPlants).catch(() => {});
@@ -92,7 +95,7 @@ export function PlantRtidField({
     return Array.from(tagSet).sort();
   }, [plants]);
 
-  const filtered = useMemo(() => {
+  const filteredAll = useMemo(() => {
     let list = plants;
     if (activeTag) {
       list = list.filter((p) => p.tags.includes(activeTag));
@@ -105,8 +108,19 @@ export function PlantRtidField({
           p.name.toLowerCase().includes(lower)
       );
     }
-    return list.slice(0, 80);
+    return list;
   }, [plants, search, activeTag]);
+
+  const totalPages = Math.ceil(filteredAll.length / PAGE_SIZE);
+  const filtered = useMemo(() => {
+    const start = (page - 1) * PAGE_SIZE;
+    return filteredAll.slice(start, start + PAGE_SIZE);
+  }, [filteredAll, page]);
+
+  // Reset page when search or tag changes
+  useEffect(() => {
+    setPage(1);
+  }, [search, activeTag]);
 
   function handleSelect(plant: PlantEntry) {
     if (idMode) {
@@ -288,6 +302,33 @@ export function PlantRtidField({
               })
             )}
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-between border-t border-base-300 px-3 py-2">
+              <span className="text-xs text-base-content/50">
+                共 {filteredAll.length} 项 · 第 {page}/{totalPages} 页
+              </span>
+              <div className="flex items-center gap-1">
+                <button
+                  type="button"
+                  className="btn btn-ghost btn-xs btn-square"
+                  disabled={page <= 1}
+                  onClick={() => setPage((p) => p - 1)}
+                >
+                  <ChevronLeft className="h-3.5 w-3.5" />
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-ghost btn-xs btn-square"
+                  disabled={page >= totalPages}
+                  onClick={() => setPage((p) => p + 1)}
+                >
+                  <ChevronRight className="h-3.5 w-3.5" />
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
