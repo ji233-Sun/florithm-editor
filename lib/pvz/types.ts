@@ -828,8 +828,8 @@ export interface FieldDefinition {
   step?: number;
   // String/Textarea constraints
   maxLength?: number;
-  // Select options
-  options?: { value: string | number; label: string }[];
+  // Select options — plain strings/numbers auto-normalized to { value, label }
+  options?: (string | number | { value: string | number; label: string })[];
   // RTID source filter
   rtidSource?: string;
   // Array item schema
