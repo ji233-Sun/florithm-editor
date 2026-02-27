@@ -8,13 +8,21 @@ import {
   Check,
   AlertCircle,
   Pencil,
+  Download,
 } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 
 export function EditorToolbar() {
-  const { levelName, setLevelName, isDirty, saveStatus, save, autoSaveTimer } =
-    useEditorStore();
+  const {
+    levelName,
+    setLevelName,
+    isDirty,
+    saveStatus,
+    save,
+    autoSaveTimer,
+    getSerializedJson,
+  } = useEditorStore();
 
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(levelName);
@@ -36,6 +44,21 @@ export function EditorToolbar() {
       setDraft(levelName);
     }
     setEditing(false);
+  }
+
+  function handleDownload() {
+    const json = getSerializedJson();
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    // 使用关卡名称作为文件名，移除不合法字符
+    const safeName = levelName.replace(/[<>:"/\\|?*]/g, "_");
+    a.download = `${safeName}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   }
 
   return (
@@ -102,6 +125,16 @@ export function EditorToolbar() {
           : "Ctrl"}
         +S
       </kbd>
+
+      {/* Download button */}
+      <button
+        className="btn btn-ghost btn-sm gap-1.5"
+        onClick={handleDownload}
+        title="下载关卡 JSON 文件"
+      >
+        <Download className="h-4 w-4" />
+        <span className="hidden sm:inline">下载</span>
+      </button>
 
       {/* Save button */}
       <button
