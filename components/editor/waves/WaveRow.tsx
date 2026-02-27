@@ -100,8 +100,8 @@ export function WaveRow({
           )}
         </div>
 
-        {/* Actions — visible on hover */}
-        <div className="flex shrink-0 items-center gap-0.5 opacity-0 transition-opacity group-hover:opacity-100">
+        {/* Actions — visible on hover on desktop, always visible on touch devices */}
+        <div className="flex shrink-0 items-center gap-0.5 opacity-100 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100">
           <button
             className="rounded-md p-1.5 text-base-content/40 transition-colors hover:bg-primary/10 hover:text-primary"
             onClick={() => setShowAddEvent(true)}

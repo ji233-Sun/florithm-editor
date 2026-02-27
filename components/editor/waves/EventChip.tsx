@@ -46,7 +46,7 @@ export function EventChip({
       />
       {title}
       <span
-        className="ml-0.5 rounded p-0.5 opacity-0 transition-opacity hover:bg-black/10 group-hover/chip:opacity-100"
+        className="ml-0.5 rounded p-0.5 opacity-100 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover/chip:opacity-100 transition-opacity hover:bg-black/10"
         role="button"
         onClick={(e) => {
           e.stopPropagation();
