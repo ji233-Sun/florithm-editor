@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useAuthStore } from "@/stores/auth-store";
 import { LogOut } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function MainLayout({
   children,
@@ -44,6 +45,7 @@ export default function MainLayout({
           </Link>
         </div>
         <div className="flex-none gap-2">
+          <ThemeToggle />
           {user && (
             <>
               <span className="text-sm text-base-content/60">
