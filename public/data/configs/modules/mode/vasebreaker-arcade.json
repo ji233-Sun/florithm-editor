@@ -1,0 +1,16 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "VaseBreakerArcadeModuleProperties",
+  "metadata": {
+    "title": "砸罐子环境",
+    "description": "启用砸罐子模式的环境和UI",
+    "icon": "gamepad-2",
+    "category": "mode",
+    "isCore": false,
+    "allowMultiple": false,
+    "defaultAlias": "VaseBreakerArcade",
+    "defaultSource": "LevelModules"
+  },
+  "initialData": {},
+  "fields": []
+}

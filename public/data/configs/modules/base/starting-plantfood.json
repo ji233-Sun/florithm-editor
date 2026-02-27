@@ -1,0 +1,26 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "LevelMutatorStartingPlantfoodProps",
+  "metadata": {
+    "title": "初始能量豆",
+    "description": "覆盖初始能量豆数量",
+    "icon": "leaf",
+    "category": "base",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "OverrideStartingPlantFood",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "StartingPlantfoodOverride": 0,
+    "DifficultyProps": "RTID(LevelModuleDifficultyStartingPlantfood@LevelModulesDifficulty)",
+    "IconImage": "IMAGE_UI_PENNY_PURSUITS_DIFFICULTY_MODIFIER_ICONS_DIFFICULTY_MODIFIER_PF",
+    "IconText": ""
+  },
+  "fields": [
+    { "key": "StartingPlantfoodOverride", "type": "number", "label": "初始能量豆数", "description": "关卡开始时获得的能量豆数量", "numberType": "int", "min": 0, "max": 99, "step": 1, "default": 0 },
+    { "key": "DifficultyProps", "type": "string", "label": "难度属性", "description": "难度模块引用 RTID", "default": "RTID(LevelModuleDifficultyStartingPlantfood@LevelModulesDifficulty)" },
+    { "key": "IconImage", "type": "string", "label": "图标图片", "description": "显示图标的资源名", "default": "IMAGE_UI_PENNY_PURSUITS_DIFFICULTY_MODIFIER_ICONS_DIFFICULTY_MODIFIER_PF" },
+    { "key": "IconText", "type": "string", "label": "图标文字", "description": "显示在图标上的文字", "default": "" }
+  ]
+}

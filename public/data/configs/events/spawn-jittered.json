@@ -1,0 +1,36 @@
+{
+  "$schema": "florithm-event-config/v1",
+  "objclass": "SpawnZombiesJitteredWaveActionProps",
+  "metadata": {
+    "title": "自然出怪",
+    "description": "标准自然僵尸生成事件",
+    "icon": "users",
+    "color": "#2196F3",
+    "darkColor": "#90CAF9",
+    "defaultAlias": "Jittered",
+    "category": "spawner"
+  },
+  "initialData": {
+    "Zombies": [],
+    "NotificationEvents": null,
+    "AdditionalPlantfood": null,
+    "SpawnPlantName": null
+  },
+  "fields": [
+    { "key": "AdditionalPlantfood", "type": "number", "label": "额外能量豆", "description": "该波额外给予的能量豆数量", "numberType": "int", "min": 0, "max": 10, "step": 1, "default": null },
+    { "key": "NotificationEvents", "type": "array", "label": "通知事件", "description": "波次开始时触发的通知", "itemType": "string", "default": null },
+    { "key": "SpawnPlantName", "type": "array", "label": "生成植物", "description": "该波额外生成的植物", "itemType": "plant-ref", "default": null },
+    {
+      "key": "Zombies",
+      "type": "array",
+      "label": "僵尸列表",
+      "description": "本波出怪的僵尸配置",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "Type", "type": "zombie-ref", "label": "僵尸类型" },
+        { "key": "Level", "type": "number", "label": "等级", "numberType": "int", "min": 1, "max": 20, "default": null },
+        { "key": "Row", "type": "number", "label": "行", "description": "指定出现行（不填为随机）", "numberType": "int", "min": 0, "max": 5, "default": null }
+      ]
+    }
+  ]
+}

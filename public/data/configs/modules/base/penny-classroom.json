@@ -1,0 +1,20 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "PennyClassroomModuleProperties",
+  "metadata": {
+    "title": "全局阶级",
+    "description": "全局定义植物等级，覆盖其他模块设置",
+    "icon": "layers",
+    "category": "base",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "PennyClassroom",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "PlantMap": {}
+  },
+  "fields": [
+    { "key": "PlantMap", "type": "map", "label": "植物等级映射", "description": "键为植物类型名，值为等级数字", "keyType": "plant-ref", "valueType": "number" }
+  ]
+}

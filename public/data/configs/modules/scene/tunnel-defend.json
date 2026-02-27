@@ -1,0 +1,31 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "TunnelDefendModuleProperties",
+  "metadata": {
+    "title": "地宫隧道",
+    "description": "设置地宫秘密关卡的隧道路径",
+    "icon": "waves",
+    "category": "scene",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "TunnelDefend",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "Roads": []
+  },
+  "fields": [
+    {
+      "key": "Roads",
+      "type": "array",
+      "label": "隧道路径",
+      "description": "隧道路径的坐标和图像",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "GridX", "type": "number", "label": "列", "numberType": "int", "min": 0, "max": 9, "default": 0 },
+        { "key": "GridY", "type": "number", "label": "行", "numberType": "int", "min": 0, "max": 5, "default": 0 },
+        { "key": "Img", "type": "string", "label": "图片", "description": "隧道段的图片资源名", "default": "" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "SunBombChallengeProperties",
+  "metadata": {
+    "title": "太阳炸弹",
+    "description": "配置掉落阳光的爆炸范围和伤害",
+    "icon": "sun-dim",
+    "category": "mode",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "SunBombs",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "PlantBombExplosionRadius": 25,
+    "ZombieBombExplosionRadius": 80,
+    "PlantDamage": 1000,
+    "ZombieDamage": 500
+  },
+  "fields": [
+    { "key": "PlantBombExplosionRadius", "type": "number", "label": "植物爆炸半径", "description": "对植物造成伤害的爆炸半径", "numberType": "int", "min": 0, "max": 200, "step": 5, "default": 25 },
+    { "key": "ZombieBombExplosionRadius", "type": "number", "label": "僵尸爆炸半径", "description": "对僵尸造成伤害的爆炸半径", "numberType": "int", "min": 0, "max": 200, "step": 5, "default": 80 },
+    { "key": "PlantDamage", "type": "number", "label": "植物伤害", "description": "太阳炸弹对植物的伤害值", "numberType": "int", "min": 0, "max": 10000, "step": 50, "default": 1000 },
+    { "key": "ZombieDamage", "type": "number", "label": "僵尸伤害", "description": "太阳炸弹对僵尸的伤害值", "numberType": "int", "min": 0, "max": 10000, "step": 50, "default": 500 }
+  ]
+}

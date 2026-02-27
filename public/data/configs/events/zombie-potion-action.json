@@ -1,0 +1,37 @@
+{
+  "$schema": "florithm-event-config/v1",
+  "objclass": "ZombiePotionActionProps",
+  "metadata": {
+    "title": "投放药水",
+    "description": "在固定位置强制生成障碍物",
+    "icon": "flask-conical",
+    "color": "#607D8B",
+    "darkColor": "#B0BEC5",
+    "defaultAlias": "PotionEvent",
+    "category": "action"
+  },
+  "initialData": {
+    "Potions": []
+  },
+  "fields": [
+    {
+      "key": "Potions",
+      "type": "array",
+      "label": "药水列表",
+      "description": "投放药水的位置和类型",
+      "itemType": "object",
+      "itemFields": [
+        {
+          "key": "Location",
+          "type": "object",
+          "label": "位置",
+          "objectFields": [
+            { "key": "mX", "type": "number", "label": "列", "numberType": "int", "min": 0, "max": 9, "default": 0 },
+            { "key": "mY", "type": "number", "label": "行", "numberType": "int", "min": 0, "max": 5, "default": 0 }
+          ]
+        },
+        { "key": "Type", "type": "string", "label": "药水类型", "default": "" }
+      ]
+    }
+  ]
+}

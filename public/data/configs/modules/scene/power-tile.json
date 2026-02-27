@@ -1,0 +1,39 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "PowerTileProperties",
+  "metadata": {
+    "title": "能量瓷砖",
+    "description": "配置能量瓷砖链接组和布局",
+    "icon": "zap",
+    "category": "scene",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "FutureLinkedTileGroups",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "LinkedTiles": []
+  },
+  "fields": [
+    {
+      "key": "LinkedTiles",
+      "type": "array",
+      "label": "链接瓷砖列表",
+      "description": "能量瓷砖的组和位置配置",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "Group", "type": "string", "label": "组名", "description": "瓷砖所属组（如 alpha, beta）", "default": "alpha" },
+        { "key": "PropagationDelay", "type": "number", "label": "传播延迟", "numberType": "float", "min": 0, "max": 10, "step": 0.1, "default": 1.5 },
+        {
+          "key": "Location",
+          "type": "object",
+          "label": "位置",
+          "objectFields": [
+            { "key": "mX", "type": "number", "label": "列", "numberType": "int", "min": 0, "max": 8, "default": 0 },
+            { "key": "mY", "type": "number", "label": "行", "numberType": "int", "min": 0, "max": 5, "default": 0 }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "florithm-challenge-config/v1",
+  "objclass": "StarChallengeSimultaneousPlants",
+  "metadata": { "title": "同时植物限制", "description": "同时不超过指定植物数" },
+  "initialData": {"MaximumPlants":10},
+  "fields": [{"key":"MaximumPlants","type":"number","label":"最大植物数","numberType":"int","min":1,"max":50,"default":10}]
+}

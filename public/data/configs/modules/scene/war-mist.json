@@ -1,0 +1,24 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "WarMistProperties",
+  "metadata": {
+    "title": "迷雾",
+    "description": "设置战场迷雾覆盖和交互",
+    "icon": "cloud",
+    "category": "scene",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "WarMist",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "m_iInitMistPosX": 5,
+    "m_iNormValX": 1000,
+    "m_iBloverEffectInterval": 15
+  },
+  "fields": [
+    { "key": "m_iInitMistPosX", "type": "number", "label": "初始迷雾列", "description": "迷雾覆盖的初始列位置", "numberType": "int", "min": 0, "max": 9, "step": 1, "default": 5 },
+    { "key": "m_iNormValX", "type": "number", "label": "标准值X", "description": "迷雾移动的标准参数", "numberType": "int", "min": 0, "max": 5000, "step": 100, "default": 1000 },
+    { "key": "m_iBloverEffectInterval", "type": "number", "label": "吹风间隔", "description": "吹风效果的间隔秒数", "numberType": "int", "min": 1, "max": 120, "step": 1, "default": 15 }
+  ]
+}

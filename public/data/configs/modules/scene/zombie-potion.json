@@ -1,0 +1,35 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "ZombiePotionModuleProperties",
+  "metadata": {
+    "title": "僵尸药水",
+    "description": "黑暗时代药水生成机制",
+    "icon": "flask-conical",
+    "category": "scene",
+    "isCore": true,
+    "allowMultiple": true,
+    "defaultAlias": "ZombiePotions",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "InitialPotionCount": 10,
+    "MaxPotionCount": 60,
+    "PotionSpawnTimer": { "Min": 12, "Max": 16 },
+    "PotionTypes": []
+  },
+  "fields": [
+    { "key": "InitialPotionCount", "type": "number", "label": "初始药水数", "description": "游戏开始时药水的数量", "numberType": "int", "min": 0, "max": 100, "step": 1, "default": 10 },
+    { "key": "MaxPotionCount", "type": "number", "label": "最大药水数", "description": "场上同时存在的最大药水数量", "numberType": "int", "min": 0, "max": 200, "step": 1, "default": 60 },
+    {
+      "key": "PotionSpawnTimer",
+      "type": "object",
+      "label": "生成间隔",
+      "description": "药水生成的时间间隔范围（秒）",
+      "objectFields": [
+        { "key": "Min", "type": "number", "label": "最小间隔", "numberType": "int", "min": 1, "max": 60, "default": 12 },
+        { "key": "Max", "type": "number", "label": "最大间隔", "numberType": "int", "min": 1, "max": 120, "default": 16 }
+      ]
+    },
+    { "key": "PotionTypes", "type": "array", "label": "药水类型", "description": "可生成的药水类型列表", "itemType": "string" }
+  ]
+}

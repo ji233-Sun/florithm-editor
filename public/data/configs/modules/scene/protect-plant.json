@@ -1,0 +1,33 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "ProtectThePlantChallengeProperties",
+  "metadata": {
+    "title": "保护植物",
+    "description": "设置必须保护的特定植物",
+    "icon": "shield-check",
+    "category": "scene",
+    "isCore": true,
+    "allowMultiple": true,
+    "defaultAlias": "ProtectThePlant",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "MustProtectCount": 0,
+    "Plants": []
+  },
+  "fields": [
+    { "key": "MustProtectCount", "type": "number", "label": "最少保护数量", "description": "必须保护的植物最低数量", "numberType": "int", "min": 0, "max": 50, "step": 1, "default": 0 },
+    {
+      "key": "Plants",
+      "type": "array",
+      "label": "保护植物列表",
+      "description": "需要保护的植物位置和类型",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "GridX", "type": "number", "label": "列", "numberType": "int", "min": 0, "max": 8, "default": 0 },
+        { "key": "GridY", "type": "number", "label": "行", "numberType": "int", "min": 0, "max": 5, "default": 0 },
+        { "key": "PlantType", "type": "plant-ref", "label": "植物类型" }
+      ]
+    }
+  ]
+}

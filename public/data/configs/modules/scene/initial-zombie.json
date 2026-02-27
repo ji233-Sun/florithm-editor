@@ -1,0 +1,32 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "InitialZombieProperties",
+  "metadata": {
+    "title": "预置僵尸",
+    "description": "游戏开始时场上存在的僵尸",
+    "icon": "puzzle",
+    "category": "scene",
+    "isCore": true,
+    "allowMultiple": true,
+    "defaultAlias": "FrozenZombiePlacement",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "InitialZombiePlacements": []
+  },
+  "fields": [
+    {
+      "key": "InitialZombiePlacements",
+      "type": "array",
+      "label": "僵尸放置列表",
+      "description": "预置僵尸的位置和类型",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "GridX", "type": "number", "label": "列", "numberType": "int", "min": 0, "max": 9, "default": 0 },
+        { "key": "GridY", "type": "number", "label": "行", "numberType": "int", "min": 0, "max": 5, "default": 0 },
+        { "key": "TypeName", "type": "zombie-select", "label": "僵尸类型" },
+        { "key": "Condition", "type": "string", "label": "状态", "description": "初始状态，如 icecubed", "default": "icecubed" }
+      ]
+    }
+  ]
+}

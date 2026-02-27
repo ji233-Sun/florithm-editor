@@ -1,0 +1,16 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "CustomLevelModuleProperties",
+  "metadata": {
+    "title": "庭院关卡",
+    "description": "将关卡适配到标准庭院框架",
+    "icon": "home",
+    "category": "base",
+    "isCore": false,
+    "allowMultiple": false,
+    "defaultAlias": "DefaultCustomLevel",
+    "defaultSource": "LevelModules"
+  },
+  "initialData": {},
+  "fields": []
+}

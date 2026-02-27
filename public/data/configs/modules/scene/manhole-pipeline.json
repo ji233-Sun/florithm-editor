@@ -1,0 +1,36 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "ManholePipelineModuleProperties",
+  "metadata": {
+    "title": "地道",
+    "description": "配置蒸汽时代地下管道",
+    "icon": "waves",
+    "category": "scene",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "ManholePipeline",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "OperationTimePerGrid": 1,
+    "DamagePerSecond": 30,
+    "PipelineList": []
+  },
+  "fields": [
+    { "key": "OperationTimePerGrid", "type": "number", "label": "每格传输时间", "description": "僵尸在管道中每格移动耗时（秒）", "numberType": "int", "min": 1, "max": 10, "step": 1, "default": 1 },
+    { "key": "DamagePerSecond", "type": "number", "label": "每秒伤害", "description": "管道内僵尸受到的每秒伤害", "numberType": "int", "min": 0, "max": 500, "step": 5, "default": 30 },
+    {
+      "key": "PipelineList",
+      "type": "array",
+      "label": "管道列表",
+      "description": "管道的起点和终点",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "StartX", "type": "number", "label": "起始列", "numberType": "int", "min": 0, "max": 9, "default": 0 },
+        { "key": "StartY", "type": "number", "label": "起始行", "numberType": "int", "min": 0, "max": 5, "default": 0 },
+        { "key": "EndX", "type": "number", "label": "结束列", "numberType": "int", "min": 0, "max": 9, "default": 0 },
+        { "key": "EndY", "type": "number", "label": "结束行", "numberType": "int", "min": 0, "max": 5, "default": 0 }
+      ]
+    }
+  ]
+}

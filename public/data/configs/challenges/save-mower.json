@@ -1,0 +1,7 @@
+{
+  "$schema": "florithm-challenge-config/v1",
+  "objclass": "StarChallengeSaveMower",
+  "metadata": { "title": "保护小推车", "description": "不失去任何小推车" },
+  "initialData": {},
+  "fields": []
+}

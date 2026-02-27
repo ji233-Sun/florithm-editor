@@ -1,0 +1,16 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "PVZ1OverwhelmModuleProperties",
+  "metadata": {
+    "title": "排山倒海",
+    "description": "PvZ1 小游戏模式，需要传送带配合",
+    "icon": "flower-2",
+    "category": "mode",
+    "isCore": false,
+    "allowMultiple": false,
+    "defaultAlias": "PVZ1Overwhelm",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {},
+  "fields": []
+}

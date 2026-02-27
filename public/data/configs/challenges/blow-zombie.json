@@ -1,0 +1,7 @@
+{
+  "$schema": "florithm-challenge-config/v1",
+  "objclass": "StarChallengeBlowZombie",
+  "metadata": { "title": "吹飞僵尸", "description": "吹飞指定数量僵尸" },
+  "initialData": {"Count":0},
+  "fields": [{"key":"Count","type":"number","label":"吹飞数量","numberType":"int","min":0,"max":50,"default":0}]
+}

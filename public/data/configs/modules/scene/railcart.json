@@ -1,0 +1,45 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "RailcartProperties",
+  "metadata": {
+    "title": "矿车",
+    "description": "配置矿车和轨道初始布局",
+    "icon": "route",
+    "category": "scene",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "Railcarts",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "RailcartType": "railcart_cowboy",
+    "Railcarts": [],
+    "Rails": []
+  },
+  "fields": [
+    { "key": "RailcartType", "type": "string", "label": "矿车类型", "description": "矿车外观类型标识", "default": "railcart_cowboy" },
+    {
+      "key": "Railcarts",
+      "type": "array",
+      "label": "矿车列表",
+      "description": "矿车的初始位置",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "Column", "type": "number", "label": "列", "numberType": "int", "min": 0, "max": 9, "default": 0 },
+        { "key": "Row", "type": "number", "label": "行", "numberType": "int", "min": 0, "max": 5, "default": 0 }
+      ]
+    },
+    {
+      "key": "Rails",
+      "type": "array",
+      "label": "轨道列表",
+      "description": "轨道的列和行范围",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "Column", "type": "number", "label": "列", "numberType": "int", "min": 0, "max": 9, "default": 0 },
+        { "key": "RowStart", "type": "number", "label": "起始行", "numberType": "int", "min": 0, "max": 5, "default": 0 },
+        { "key": "RowEnd", "type": "number", "label": "结束行", "numberType": "int", "min": 0, "max": 5, "default": 0 }
+      ]
+    }
+  ]
+}

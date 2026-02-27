@@ -1,0 +1,37 @@
+{
+  "$schema": "florithm-event-config/v1",
+  "objclass": "StormZombieSpawnerProps",
+  "metadata": {
+    "title": "风暴突袭",
+    "description": "沙尘暴或暴风雪运送僵尸",
+    "icon": "cloud-lightning",
+    "color": "#FF9800",
+    "darkColor": "#FFCC80",
+    "defaultAlias": "StormEvent",
+    "category": "spawner"
+  },
+  "initialData": {
+    "ColumnStart": 5,
+    "ColumnEnd": 9,
+    "GroupSize": 1,
+    "TimeBetweenGroups": 1,
+    "Type": "sandstorm",
+    "Zombies": []
+  },
+  "fields": [
+    { "key": "Type", "type": "select", "label": "风暴类型", "description": "风暴的视觉类型", "options": ["sandstorm", "snowstorm"], "default": "sandstorm" },
+    { "key": "ColumnStart", "type": "number", "label": "起始列", "numberType": "int", "min": 0, "max": 9, "default": 5 },
+    { "key": "ColumnEnd", "type": "number", "label": "结束列", "numberType": "int", "min": 0, "max": 9, "default": 9 },
+    { "key": "GroupSize", "type": "number", "label": "组大小", "numberType": "int", "min": 1, "max": 20, "default": 1 },
+    { "key": "TimeBetweenGroups", "type": "number", "label": "组间隔", "numberType": "int", "min": 0, "max": 30, "default": 1 },
+    {
+      "key": "Zombies",
+      "type": "array",
+      "label": "僵尸列表",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "Type", "type": "zombie-ref", "label": "僵尸类型" }
+      ]
+    }
+  ]
+}

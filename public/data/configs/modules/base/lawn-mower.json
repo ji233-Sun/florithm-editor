@@ -1,0 +1,16 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "LawnMowerProperties",
+  "metadata": {
+    "title": "小推车",
+    "description": "设置小推车样式（庭院模块下可能无效）",
+    "icon": "scissors",
+    "category": "base",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "ModernMowers",
+    "defaultSource": "LevelModules"
+  },
+  "initialData": {},
+  "fields": []
+}

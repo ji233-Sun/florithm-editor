@@ -1,0 +1,35 @@
+{
+  "$schema": "florithm-event-config/v1",
+  "objclass": "SpawnZombiesFromGridItemSpawnerProps",
+  "metadata": {
+    "title": "障碍物出怪",
+    "description": "从特定障碍物中生成僵尸",
+    "icon": "users",
+    "color": "#607D8B",
+    "darkColor": "#B0BEC5",
+    "defaultAlias": "GraveSpawner",
+    "category": "spawner"
+  },
+  "initialData": {
+    "WaveStartMessage": null,
+    "ZombieSpawnWaitTime": 0,
+    "GridTypes": [],
+    "Zombies": []
+  },
+  "fields": [
+    { "key": "WaveStartMessage", "type": "string", "label": "开始消息", "description": "波次开始时显示的消息", "default": null },
+    { "key": "ZombieSpawnWaitTime", "type": "number", "label": "等待时间", "description": "僵尸生成前的等待秒数", "numberType": "int", "min": 0, "max": 30, "step": 1, "default": 0 },
+    { "key": "GridTypes", "type": "array", "label": "障碍物类型", "description": "可以出怪的障碍物类型列表", "itemType": "string" },
+    {
+      "key": "Zombies",
+      "type": "array",
+      "label": "僵尸列表",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "Type", "type": "zombie-ref", "label": "僵尸类型" },
+        { "key": "Level", "type": "number", "label": "等级", "numberType": "int", "default": null },
+        { "key": "Row", "type": "number", "label": "行", "numberType": "int", "default": null }
+      ]
+    }
+  ]
+}

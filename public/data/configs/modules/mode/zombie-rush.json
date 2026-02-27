@@ -1,0 +1,22 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "ZombieRushModuleProperties",
+  "metadata": {
+    "title": "关卡计时",
+    "description": "倒计时结束后关卡立即结束",
+    "icon": "timer",
+    "category": "mode",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "ZombieRushModule",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "TimeCountDown": 120.0,
+    "PlantBlackList": []
+  },
+  "fields": [
+    { "key": "TimeCountDown", "type": "number", "label": "倒计时", "description": "关卡倒计时总秒数", "numberType": "float", "min": 1, "max": 600, "step": 1, "default": 120.0 },
+    { "key": "PlantBlackList", "type": "array", "label": "植物黑名单", "description": "禁止在计时模式下使用的植物ID列表", "itemType": "number" }
+  ]
+}

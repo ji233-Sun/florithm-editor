@@ -1,0 +1,16 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "RainDarkProperties",
+  "metadata": {
+    "title": "雨雪天气",
+    "description": "设置雨、雪、闪电天气效果",
+    "icon": "snowflake",
+    "category": "base",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "DefaultSnow",
+    "defaultSource": "LevelModules"
+  },
+  "initialData": {},
+  "fields": []
+}

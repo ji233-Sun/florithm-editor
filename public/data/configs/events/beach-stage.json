@@ -1,0 +1,33 @@
+{
+  "$schema": "florithm-event-config/v1",
+  "objclass": "BeachStageEventZombieSpawnerProps",
+  "metadata": {
+    "title": "退潮事件",
+    "description": "退潮时出现的僵尸",
+    "icon": "waves",
+    "color": "#00ACC1",
+    "darkColor": "#81D4FA",
+    "defaultAlias": "LowTideEvent",
+    "category": "spawner"
+  },
+  "initialData": {
+    "ColumnStart": 5,
+    "ColumnEnd": 9,
+    "GroupSize": 1,
+    "ZombieCount": 1,
+    "ZombieName": "beach",
+    "TimeBeforeFullSpawn": 1.0,
+    "TimeBetweenGroups": 0.5,
+    "WaveStartMessage": ""
+  },
+  "fields": [
+    { "key": "ColumnStart", "type": "number", "label": "起始列", "numberType": "int", "min": 0, "max": 9, "default": 5 },
+    { "key": "ColumnEnd", "type": "number", "label": "结束列", "numberType": "int", "min": 0, "max": 9, "default": 9 },
+    { "key": "GroupSize", "type": "number", "label": "组大小", "numberType": "int", "min": 1, "max": 20, "default": 1 },
+    { "key": "ZombieCount", "type": "number", "label": "僵尸数量", "numberType": "int", "min": 1, "max": 50, "default": 1 },
+    { "key": "ZombieName", "type": "string", "label": "僵尸名称", "default": "beach" },
+    { "key": "TimeBeforeFullSpawn", "type": "number", "label": "完全生成前延迟", "numberType": "float", "min": 0, "max": 30, "step": 0.5, "default": 1.0 },
+    { "key": "TimeBetweenGroups", "type": "number", "label": "组间隔", "numberType": "float", "min": 0, "max": 10, "step": 0.1, "default": 0.5 },
+    { "key": "WaveStartMessage", "type": "string", "label": "开始消息", "default": "" }
+  ]
+}

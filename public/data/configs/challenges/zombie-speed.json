@@ -1,0 +1,7 @@
+{
+  "$schema": "florithm-challenge-config/v1",
+  "objclass": "StarChallengeZombieSpeed",
+  "metadata": { "title": "僵尸加速", "description": "僵尸速度提升" },
+  "initialData": {"SpeedModifier":0.0},
+  "fields": [{"key":"SpeedModifier","type":"number","label":"速度修正","numberType":"float","min":0,"max":10,"step":0.1,"default":0.0}]
+}

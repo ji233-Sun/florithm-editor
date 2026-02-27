@@ -1,0 +1,52 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "VaseBreakerPresetProperties",
+  "metadata": {
+    "title": "砸罐子预设",
+    "description": "配置罐子内容（需要配合环境和流程模块）",
+    "icon": "grid-3x3",
+    "category": "mode",
+    "isCore": false,
+    "allowMultiple": false,
+    "defaultAlias": "VaseBreakerProps",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "MinColumnIndex": 4,
+    "MaxColumnIndex": 8,
+    "NumColoredPlantVases": 0,
+    "NumColoredZombieVases": 0,
+    "GridSquareBlacklist": [],
+    "Vases": []
+  },
+  "fields": [
+    { "key": "MinColumnIndex", "type": "number", "label": "最小列号", "description": "罐子生成范围的起始列", "numberType": "int", "min": 0, "max": 8, "step": 1, "default": 4 },
+    { "key": "MaxColumnIndex", "type": "number", "label": "最大列号", "description": "罐子生成范围的结束列", "numberType": "int", "min": 0, "max": 8, "step": 1, "default": 8 },
+    { "key": "NumColoredPlantVases", "type": "number", "label": "彩色植物罐数", "description": "带颜色标记的植物罐数量", "numberType": "int", "min": 0, "max": 50, "step": 1, "default": 0 },
+    { "key": "NumColoredZombieVases", "type": "number", "label": "彩色僵尸罐数", "description": "带颜色标记的僵尸罐数量", "numberType": "int", "min": 0, "max": 50, "step": 1, "default": 0 },
+    {
+      "key": "GridSquareBlacklist",
+      "type": "array",
+      "label": "黑名单格子",
+      "description": "罐子不会生成的位置列表",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "mX", "type": "number", "label": "列", "numberType": "int", "min": 0, "max": 8 },
+        { "key": "mY", "type": "number", "label": "行", "numberType": "int", "min": 0, "max": 5 }
+      ]
+    },
+    {
+      "key": "Vases",
+      "type": "array",
+      "label": "罐子内容列表",
+      "description": "定义每种罐子的内容",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "ZombieTypeName", "type": "zombie-select", "label": "僵尸类型", "default": null },
+        { "key": "PlantTypeName", "type": "plant-select", "label": "植物类型", "default": null },
+        { "key": "CollectableTypeName", "type": "string", "label": "收集物类型", "default": null },
+        { "key": "Count", "type": "number", "label": "数量", "numberType": "int", "min": 1, "max": 50, "default": 1 }
+      ]
+    }
+  ]
+}

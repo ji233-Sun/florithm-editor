@@ -1,0 +1,29 @@
+{
+  "$schema": "florithm-event-config/v1",
+  "objclass": "FrostWindWaveActionProps",
+  "metadata": {
+    "title": "寒风",
+    "description": "在指定行吹出冰冻寒风",
+    "icon": "snowflake",
+    "color": "#0288D1",
+    "darkColor": "#90CAF9",
+    "defaultAlias": "FrostWindEvent",
+    "category": "action"
+  },
+  "initialData": {
+    "Winds": []
+  },
+  "fields": [
+    {
+      "key": "Winds",
+      "type": "array",
+      "label": "寒风列表",
+      "description": "每股寒风的方向和行",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "Direction", "type": "select", "label": "方向", "options": ["right", "left"], "default": "right" },
+        { "key": "Row", "type": "number", "label": "行", "numberType": "int", "min": 0, "max": 5, "default": 2 }
+      ]
+    }
+  ]
+}

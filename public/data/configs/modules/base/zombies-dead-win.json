@@ -1,0 +1,16 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "ZombiesDeadWinConProperties",
+  "metadata": {
+    "title": "僵尸死亡胜利",
+    "description": "关卡稳定运行所需的掉落模块",
+    "icon": "gift",
+    "category": "base",
+    "isCore": false,
+    "allowMultiple": false,
+    "defaultAlias": "ZombiesDeadWinCon",
+    "defaultSource": "LevelModules"
+  },
+  "initialData": {},
+  "fields": []
+}

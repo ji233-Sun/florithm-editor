@@ -1,0 +1,26 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "LevelScoringModuleProperties",
+  "metadata": {
+    "title": "积分模块",
+    "description": "启用基于击杀僵尸的计分系统",
+    "icon": "trophy",
+    "category": "base",
+    "isCore": false,
+    "allowMultiple": false,
+    "defaultAlias": "LevelScoring",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "PlantBonusMultiplier": 0.0,
+    "PlantBonuses": [],
+    "ScoringRulesType": "NoMultiplier",
+    "StartingPlantfood": 0
+  },
+  "fields": [
+    { "key": "ScoringRulesType", "type": "select", "label": "计分规则", "description": "计分规则类型", "options": ["NoMultiplier", "WithMultiplier"], "default": "NoMultiplier" },
+    { "key": "PlantBonusMultiplier", "type": "number", "label": "植物奖励倍率", "description": "植物击杀奖励的倍率", "numberType": "float", "min": 0, "max": 10, "step": 0.1, "default": 0.0 },
+    { "key": "PlantBonuses", "type": "array", "label": "奖励植物列表", "description": "能获得奖励倍率的植物", "itemType": "plant-ref" },
+    { "key": "StartingPlantfood", "type": "number", "label": "初始能量豆", "description": "关卡开始时的能量豆数量", "numberType": "int", "min": 0, "max": 99, "step": 1, "default": 0 }
+  ]
+}

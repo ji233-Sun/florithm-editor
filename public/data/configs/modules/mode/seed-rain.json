@@ -1,0 +1,35 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "SeedRainProperties",
+  "metadata": {
+    "title": "种子雨",
+    "description": "控制天降植物、僵尸或能量豆",
+    "icon": "cloud-rain",
+    "category": "mode",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "SeedRain",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "RainInterval": 5,
+    "SeedRains": []
+  },
+  "fields": [
+    { "key": "RainInterval", "type": "number", "label": "降落间隔", "description": "种子雨的间隔秒数", "numberType": "int", "min": 1, "max": 60, "step": 1, "default": 5 },
+    {
+      "key": "SeedRains",
+      "type": "array",
+      "label": "种子雨列表",
+      "description": "配置掉落的植物/僵尸/收集物",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "SeedRainType", "type": "number", "label": "类型", "description": "0=植物, 1=僵尸, 2=能量豆", "numberType": "int", "min": 0, "max": 2, "default": 0 },
+        { "key": "PlantTypeName", "type": "plant-select", "label": "植物类型", "default": null },
+        { "key": "ZombieTypeName", "type": "zombie-select", "label": "僵尸类型", "default": null },
+        { "key": "MaxCount", "type": "number", "label": "最大数量", "numberType": "int", "min": 0, "max": 50, "default": 5 },
+        { "key": "Weight", "type": "number", "label": "权重", "numberType": "int", "min": 0, "max": 1000, "default": 100 }
+      ]
+    }
+  ]
+}

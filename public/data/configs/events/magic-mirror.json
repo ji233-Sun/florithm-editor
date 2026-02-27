@@ -1,0 +1,23 @@
+{
+  "$schema": "florithm-event-config/v1",
+  "objclass": "WaveActionMagicMirrorTeleportationArrayProps2",
+  "metadata": {
+    "title": "魔镜传送",
+    "description": "放置一对魔镜进行传送",
+    "icon": "arrow-left-right",
+    "color": "#7C30D9",
+    "darkColor": "#A179D2",
+    "defaultAlias": "MirrorEvent"
+  },
+  "initialData": { "MagicMirrorTeleportationArrays": [] },
+  "fields": [
+    { "key": "MagicMirrorTeleportationArrays", "type": "array", "label": "魔镜阵列", "itemFields": [
+      { "key": "Mirror1GridX", "type": "number", "label": "镜1列", "numberType": "int", "min": 0, "max": 8, "default": 2 },
+      { "key": "Mirror1GridY", "type": "number", "label": "镜1行", "numberType": "int", "min": 0, "max": 5, "default": 2 },
+      { "key": "Mirror2GridX", "type": "number", "label": "镜2列", "numberType": "int", "min": 0, "max": 8, "default": 6 },
+      { "key": "Mirror2GridY", "type": "number", "label": "镜2行", "numberType": "int", "min": 0, "max": 5, "default": 2 },
+      { "key": "TypeIndex", "type": "number", "label": "类型", "numberType": "int", "default": 1 },
+      { "key": "MirrorExistDuration", "type": "number", "label": "持续时间", "numberType": "int", "default": 300 }
+    ]}
+  ]
+}

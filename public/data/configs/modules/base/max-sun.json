@@ -1,0 +1,26 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "LevelMutatorMaxSunProps",
+  "metadata": {
+    "title": "阳光上限",
+    "description": "覆盖最大阳光存储值",
+    "icon": "sun-dim",
+    "category": "base",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "OverrideMaxSun",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "MaxSunOverride": 9900,
+    "DifficultyProps": "RTID(LevelModuleDifficultyMaxSun@LevelModulesDifficulty)",
+    "IconImage": "IMAGE_UI_PENNY_PURSUITS_DIFFICULTY_MODIFIER_ICONS_DIFFICULTY_MODIFIER_STARTING_SUN",
+    "IconText": ""
+  },
+  "fields": [
+    { "key": "MaxSunOverride", "type": "number", "label": "最大阳光值", "description": "覆盖的阳光上限", "numberType": "int", "min": 0, "max": 99999, "step": 50, "default": 9900 },
+    { "key": "DifficultyProps", "type": "string", "label": "难度属性", "description": "难度模块引用 RTID", "default": "RTID(LevelModuleDifficultyMaxSun@LevelModulesDifficulty)" },
+    { "key": "IconImage", "type": "string", "label": "图标图片", "description": "显示图标的资源名", "default": "IMAGE_UI_PENNY_PURSUITS_DIFFICULTY_MODIFIER_ICONS_DIFFICULTY_MODIFIER_STARTING_SUN" },
+    { "key": "IconText", "type": "string", "label": "图标文字", "description": "显示在图标上的文字", "default": "" }
+  ]
+}

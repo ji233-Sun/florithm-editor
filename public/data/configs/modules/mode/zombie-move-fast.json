@@ -1,0 +1,22 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "ZombieMoveFastModuleProperties",
+  "metadata": {
+    "title": "加速进场",
+    "description": "僵尸入场时快速移动一段距离",
+    "icon": "fast-forward",
+    "category": "mode",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "FastSpeed",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "StopColumn": 6,
+    "SpeedUp": 3.0
+  },
+  "fields": [
+    { "key": "StopColumn", "type": "number", "label": "停止列", "description": "僵尸快速移动到哪一列后恢复正常速度", "numberType": "int", "min": 0, "max": 9, "step": 1, "default": 6 },
+    { "key": "SpeedUp", "type": "number", "label": "加速倍率", "description": "快速移动时的速度倍率", "numberType": "float", "min": 1.0, "max": 20.0, "step": 0.5, "default": 3.0 }
+  ]
+}

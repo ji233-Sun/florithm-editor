@@ -1,0 +1,31 @@
+{
+  "$schema": "florithm-event-config/v1",
+  "objclass": "TidalChangeWaveActionProps",
+  "metadata": {
+    "title": "潮水变更",
+    "description": "改变水位位置",
+    "icon": "droplets",
+    "color": "#00ACC1",
+    "darkColor": "#81D4FA",
+    "defaultAlias": "TidalChangeEvent",
+    "category": "action"
+  },
+  "initialData": {
+    "TidalChange": {
+      "ChangeAmount": 0,
+      "ChangeType": "absolute"
+    }
+  },
+  "fields": [
+    {
+      "key": "TidalChange",
+      "type": "object",
+      "label": "潮水变更",
+      "description": "潮水变更的参数",
+      "objectFields": [
+        { "key": "ChangeAmount", "type": "number", "label": "变更量", "description": "潮水位置的变更值", "numberType": "int", "min": -9, "max": 9, "step": 1, "default": 0 },
+        { "key": "ChangeType", "type": "select", "label": "变更类型", "options": ["absolute", "relative"], "default": "absolute" }
+      ]
+    }
+  ]
+}

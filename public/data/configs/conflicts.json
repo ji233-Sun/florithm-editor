@@ -1,0 +1,66 @@
+{
+  "$schema": "florithm-conflicts/v1",
+  "description": "模块间的逻辑冲突规则",
+  "rules": [
+    {
+      "modules": ["SeedBankProperties", "ConveyorSeedBankProperties"],
+      "title": "种子库与传送带冲突",
+      "description": "种子库与传送带模块的UI会相互遮挡，而且有可能闪退，需要确保种子库处于预选模式。",
+      "severity": "warning"
+    },
+    {
+      "modules": ["VaseBreakerPresetProperties", "StandardLevelIntroProperties"],
+      "title": "砸罐子与开局转场冲突",
+      "description": "砸罐子模式下不需要添加开局转场动画。",
+      "severity": "warning"
+    },
+    {
+      "modules": ["LastStandMinigameProperties", "StandardLevelIntroProperties"],
+      "title": "坚不可摧与开局转场冲突",
+      "description": "坚不可摧模式下不需要添加开局转场动画。",
+      "severity": "warning"
+    },
+    {
+      "modules": ["EvilDaveProperties", "ZombiesDeadWinConProperties"],
+      "title": "我是僵尸与僵尸掉落冲突",
+      "description": "我是僵尸模式下不能添加僵尸掉落模块。",
+      "severity": "error"
+    },
+    {
+      "modules": ["EvilDaveProperties", "ZombiesAteYourBrainsProperties"],
+      "title": "我是僵尸与僵尸胜利判定冲突",
+      "description": "我是僵尸模式下不能添加僵尸胜利判定。",
+      "severity": "error"
+    },
+    {
+      "modules": ["ZombossBattleModuleProperties", "ZombiesDeadWinConProperties"],
+      "title": "僵王战与死亡掉落冲突",
+      "description": "僵王战模式下使用死亡掉落会导致无法正常结算。",
+      "severity": "error"
+    },
+    {
+      "modules": ["ZombossBattleIntroProperties", "StandardLevelIntroProperties"],
+      "title": "两种转场冲突",
+      "description": "两种关卡开局转场不能同时出现，否则僵王血量无法正常显示。",
+      "severity": "error"
+    },
+    {
+      "modules": ["InitialPlantEntryProperties", "RoofProperties"],
+      "title": "预置植物与屋顶冲突",
+      "description": "在屋顶无法进行预置植物，会引发闪退。",
+      "severity": "error"
+    },
+    {
+      "modules": ["ProtectThePlantChallengeProperties", "RoofProperties"],
+      "title": "保护植物与屋顶冲突",
+      "description": "在屋顶无法进行预置植物，会引发闪退。",
+      "severity": "error"
+    },
+    {
+      "modules": ["CustomLevelModuleProperties", "LawnMowerProperties"],
+      "title": "庭院模块与小推车冲突",
+      "description": "庭院模块下使用小推车无效。",
+      "severity": "warning"
+    }
+  ]
+}

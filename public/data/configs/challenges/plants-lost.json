@@ -1,0 +1,7 @@
+{
+  "$schema": "florithm-challenge-config/v1",
+  "objclass": "StarChallengePlantsLost",
+  "metadata": { "title": "植物损失限制", "description": "不超过指定植物损失" },
+  "initialData": {"MaximumPlantsLost":10},
+  "fields": [{"key":"MaximumPlantsLost","type":"number","label":"最大损失","numberType":"int","min":0,"max":50,"default":10}]
+}

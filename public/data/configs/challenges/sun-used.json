@@ -1,0 +1,7 @@
+{
+  "$schema": "florithm-challenge-config/v1",
+  "objclass": "StarChallengeSunUsed",
+  "metadata": { "title": "阳光限制", "description": "使用不超过指定阳光通关" },
+  "initialData": {"MaximumSun":2000},
+  "fields": [{"key":"MaximumSun","type":"number","label":"最大阳光","numberType":"int","min":0,"max":9999,"default":2000}]
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "florithm-challenge-config/v1",
+  "objclass": "StarChallengeZombieDistance",
+  "metadata": { "title": "僵尸距离", "description": "不让僵尸越过指定距离" },
+  "initialData": {"TargetDistance":5.0},
+  "fields": [{"key":"TargetDistance","type":"number","label":"目标距离","numberType":"float","min":0,"max":10,"step":0.5,"default":5.0}]
+}

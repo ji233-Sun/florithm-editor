@@ -1,0 +1,20 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "PiratePlankProperties",
+  "metadata": {
+    "title": "甲板",
+    "description": "配置海盗港湾地图的甲板行",
+    "icon": "route",
+    "category": "scene",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "PiratePlanks",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "PlankRows": []
+  },
+  "fields": [
+    { "key": "PlankRows", "type": "array", "label": "甲板行列表", "description": "有甲板的行号列表（0-4）", "itemType": "number" }
+  ]
+}

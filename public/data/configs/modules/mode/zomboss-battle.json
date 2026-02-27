@@ -1,0 +1,39 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "ZombossBattleModuleProperties",
+  "metadata": {
+    "title": "僵王战",
+    "description": "配置僵王战参数和类型",
+    "icon": "skull",
+    "category": "mode",
+    "isCore": false,
+    "allowMultiple": false,
+    "defaultAlias": "ZombossBattle",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "ReservedColumnCount": 2,
+    "ZombossMechType": "zombossmech_egypt",
+    "ZombossStageCount": 3,
+    "ZombossDeathRow": 3,
+    "ZombossDeathColumn": 5,
+    "ZombossSpawnGridPosition": { "mX": 6, "mY": 3 }
+  },
+  "fields": [
+    { "key": "ZombossMechType", "type": "zomboss-ref", "label": "僵王机甲类型", "description": "僵王的机甲类型标识", "default": "zombossmech_egypt" },
+    { "key": "ZombossStageCount", "type": "number", "label": "阶段数", "description": "僵王战的阶段数量", "numberType": "int", "min": 1, "max": 10, "step": 1, "default": 3 },
+    { "key": "ReservedColumnCount", "type": "number", "label": "保留列数", "description": "僵王占用的保留列数", "numberType": "int", "min": 0, "max": 5, "step": 1, "default": 2 },
+    { "key": "ZombossDeathRow", "type": "number", "label": "死亡行", "description": "僵王死亡动画的行号", "numberType": "int", "min": 0, "max": 5, "step": 1, "default": 3 },
+    { "key": "ZombossDeathColumn", "type": "number", "label": "死亡列", "description": "僵王死亡动画的列号", "numberType": "int", "min": 0, "max": 9, "step": 1, "default": 5 },
+    {
+      "key": "ZombossSpawnGridPosition",
+      "type": "object",
+      "label": "生成位置",
+      "description": "僵王生成的网格坐标",
+      "objectFields": [
+        { "key": "mX", "type": "number", "label": "列", "numberType": "int", "min": 0, "max": 9, "default": 6 },
+        { "key": "mY", "type": "number", "label": "行", "numberType": "int", "min": 0, "max": 5, "default": 3 }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "events": [
+    { "id": "spawn-jittered", "objclass": "SpawnZombiesJitteredWaveActionProps", "file": "spawn-jittered.json" },
+    { "id": "spawn-ground", "objclass": "SpawnZombiesFromGroundSpawnerProps", "file": "spawn-ground.json" },
+    { "id": "spawn-griditem", "objclass": "SpawnZombiesFromGridItemSpawnerProps", "file": "spawn-griditem.json" },
+    { "id": "beach-stage", "objclass": "BeachStageEventZombieSpawnerProps", "file": "beach-stage.json" },
+    { "id": "storm", "objclass": "StormZombieSpawnerProps", "file": "storm.json" },
+    { "id": "raiding-party", "objclass": "RaidingPartyZombieSpawnerProps", "file": "raiding-party.json" },
+    { "id": "spider-rain", "objclass": "SpiderRainZombieSpawnerProps", "file": "spider-rain.json" },
+    { "id": "parachute-rain", "objclass": "ParachuteRainZombieSpawnerProps", "file": "parachute-rain.json" },
+    { "id": "bass-rain", "objclass": "BassRainZombieSpawnerProps", "file": "bass-rain.json" },
+    { "id": "portal", "objclass": "SpawnModernPortalsWaveActionProps", "file": "portal.json" },
+    { "id": "frost-wind", "objclass": "FrostWindWaveActionProps", "file": "frost-wind.json" },
+    { "id": "dino-wave", "objclass": "DinoWaveActionProps", "file": "dino-wave.json" },
+    { "id": "tidal-change", "objclass": "TidalChangeWaveActionProps", "file": "tidal-change.json" },
+    { "id": "black-hole", "objclass": "BlackHoleWaveActionProps", "file": "black-hole.json" },
+    { "id": "zombie-potion-action", "objclass": "ZombiePotionActionProps", "file": "zombie-potion-action.json" },
+    { "id": "spawn-gravestones", "objclass": "SpawnGravestonesWaveActionProps", "file": "spawn-gravestones.json" },
+    { "id": "modify-conveyor", "objclass": "ModifyConveyorWaveActionProps", "file": "modify-conveyor.json" },
+    { "id": "magic-mirror", "objclass": "WaveActionMagicMirrorTeleportationArrayProps2", "file": "magic-mirror.json" },
+    { "id": "fairytale-fog", "objclass": "FairyTaleFogWaveActionProps", "file": "fairytale-fog.json" },
+    { "id": "fairytale-wind", "objclass": "FairyTaleWindWaveActionProps", "file": "fairytale-wind.json" }
+  ]
+}

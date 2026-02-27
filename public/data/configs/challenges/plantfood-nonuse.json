@@ -1,0 +1,7 @@
+{
+  "$schema": "florithm-challenge-config/v1",
+  "objclass": "StarChallengePlantFoodNonuse",
+  "metadata": { "title": "不使用能量豆", "description": "不使用任何能量豆通关" },
+  "initialData": {},
+  "fields": []
+}

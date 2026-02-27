@@ -1,0 +1,16 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "VaseBreakerFlowModuleProperties",
+  "metadata": {
+    "title": "砸罐子流程",
+    "description": "控制罐子开场掉落动画",
+    "icon": "skip-forward",
+    "category": "mode",
+    "isCore": false,
+    "allowMultiple": false,
+    "defaultAlias": "VaseBreakerFlow",
+    "defaultSource": "LevelModules"
+  },
+  "initialData": {},
+  "fields": []
+}

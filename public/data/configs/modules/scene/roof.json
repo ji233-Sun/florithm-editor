@@ -1,0 +1,22 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "RoofProperties",
+  "metadata": {
+    "title": "屋顶花盆",
+    "description": "配置屋顶关卡的花盆列范围",
+    "icon": "flower-2",
+    "category": "scene",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "RoofProps",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "FlowerPotStartColumn": 0,
+    "FlowerPotEndColumn": 2
+  },
+  "fields": [
+    { "key": "FlowerPotStartColumn", "type": "number", "label": "花盆起始列", "description": "花盆覆盖的起始列号", "numberType": "int", "min": 0, "max": 8, "step": 1, "default": 0 },
+    { "key": "FlowerPotEndColumn", "type": "number", "label": "花盆结束列", "description": "花盆覆盖的结束列号", "numberType": "int", "min": 0, "max": 8, "step": 1, "default": 2 }
+  ]
+}

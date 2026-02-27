@@ -1,0 +1,30 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "ZombossBattleIntroProperties",
+  "metadata": {
+    "title": "僵王战转场",
+    "description": "控制僵王战过场动画和血条显示",
+    "icon": "clapperboard",
+    "category": "mode",
+    "isCore": false,
+    "allowMultiple": false,
+    "defaultAlias": "ZombossBattleIntro",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "PanStartOffset": 78,
+    "PanEndOffset": 486,
+    "PanRightDuration": 1.5,
+    "PanLeftDuration": 1.5,
+    "ZombossPhaseCount": 3,
+    "SkipShowingStreetBossBattle": false
+  },
+  "fields": [
+    { "key": "PanStartOffset", "type": "number", "label": "平移起始偏移", "description": "镜头平移的起始偏移量", "numberType": "int", "min": 0, "max": 1000, "step": 1, "default": 78 },
+    { "key": "PanEndOffset", "type": "number", "label": "平移结束偏移", "description": "镜头平移的结束偏移量", "numberType": "int", "min": 0, "max": 1000, "step": 1, "default": 486 },
+    { "key": "PanRightDuration", "type": "number", "label": "右平移时长", "description": "镜头向右平移的时长（秒）", "numberType": "float", "min": 0, "max": 10, "step": 0.1, "default": 1.5 },
+    { "key": "PanLeftDuration", "type": "number", "label": "左平移时长", "description": "镜头向左平移的时长（秒）", "numberType": "float", "min": 0, "max": 10, "step": 0.1, "default": 1.5 },
+    { "key": "ZombossPhaseCount", "type": "number", "label": "阶段数", "description": "僵王血条显示的阶段数", "numberType": "int", "min": 1, "max": 10, "step": 1, "default": 3 },
+    { "key": "SkipShowingStreetBossBattle", "type": "boolean", "label": "跳过街道Boss展示", "description": "是否跳过街道Boss战的展示动画", "default": false }
+  ]
+}

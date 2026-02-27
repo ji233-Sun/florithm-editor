@@ -1,0 +1,7 @@
+{
+  "$schema": "florithm-challenge-config/v1",
+  "objclass": "StarChallengeBeatTheLevel",
+  "metadata": { "title": "通关", "description": "通过此关卡" },
+  "initialData": {"Description":"","DescriptiveName":""},
+  "fields": [{"key":"Description","type":"string","label":"描述","default":""},{"key":"DescriptiveName","type":"string","label":"名称","default":""}]
+}

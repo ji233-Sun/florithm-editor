@@ -1,0 +1,16 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "ZombiesAteYourBrainsProperties",
+  "metadata": {
+    "title": "僵尸胜利判定",
+    "description": "僵尸进入房屋触发失败的位置判定",
+    "icon": "skull",
+    "category": "base",
+    "isCore": false,
+    "allowMultiple": false,
+    "defaultAlias": "DefaultZombieWinCondition",
+    "defaultSource": "LevelModules"
+  },
+  "initialData": {},
+  "fields": []
+}

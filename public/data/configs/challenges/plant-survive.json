@@ -1,0 +1,7 @@
+{
+  "$schema": "florithm-challenge-config/v1",
+  "objclass": "StarChallengePlantSurvive",
+  "metadata": { "title": "植物存活", "description": "保持指定数量植物存活" },
+  "initialData": {"Count":10},
+  "fields": [{"key":"Count","type":"number","label":"存活数量","numberType":"int","min":1,"max":50,"default":10}]
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "florithm-challenge-config/v1",
+  "objclass": "StarChallengeSunReduced",
+  "metadata": { "title": "阳光减少", "description": "阳光产出降低" },
+  "initialData": {"sunModifier":0.0},
+  "fields": [{"key":"sunModifier","type":"number","label":"阳光修正","numberType":"float","min":0,"max":1,"step":0.1,"default":0.0}]
+}

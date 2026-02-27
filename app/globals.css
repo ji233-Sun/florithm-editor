@@ -1,0 +1,109 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* daisyUI theme customization */
+@plugin "daisyui/theme" {
+  name: "florithm";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: oklch(0.98 0.002 240);
+  --color-base-200: oklch(0.95 0.004 240);
+  --color-base-300: oklch(0.90 0.006 240);
+  --color-base-content: oklch(0.25 0.02 260);
+  --color-primary: oklch(0.60 0.18 260);
+  --color-primary-content: oklch(0.98 0 0);
+  --color-secondary: oklch(0.65 0.15 160);
+  --color-secondary-content: oklch(0.98 0 0);
+  --color-accent: oklch(0.70 0.16 50);
+  --color-accent-content: oklch(0.20 0.02 50);
+  --color-neutral: oklch(0.35 0.02 260);
+  --color-neutral-content: oklch(0.95 0 0);
+  --color-info: oklch(0.70 0.14 230);
+  --color-success: oklch(0.70 0.17 150);
+  --color-warning: oklch(0.80 0.16 85);
+  --color-error: oklch(0.65 0.20 25);
+
+  --rounded-box: 0.75rem;
+  --rounded-btn: 0.5rem;
+  --rounded-badge: 1rem;
+  --animation-btn: 0.2s;
+  --animation-input: 0.2s;
+  --btn-focus-scale: 0.98;
+  --tab-radius: 0.5rem;
+}
+
+@plugin "daisyui/theme" {
+  name: "florithm-dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-base-100: oklch(0.22 0.012 260);
+  --color-base-200: oklch(0.18 0.012 260);
+  --color-base-300: oklch(0.26 0.014 260);
+  --color-base-content: oklch(0.90 0.006 240);
+  --color-primary: oklch(0.68 0.16 260);
+  --color-primary-content: oklch(0.15 0 0);
+  --color-secondary: oklch(0.70 0.14 160);
+  --color-secondary-content: oklch(0.15 0 0);
+  --color-accent: oklch(0.75 0.14 50);
+  --color-accent-content: oklch(0.15 0.02 50);
+  --color-neutral: oklch(0.50 0.02 260);
+  --color-neutral-content: oklch(0.95 0 0);
+  --color-info: oklch(0.72 0.12 230);
+  --color-success: oklch(0.72 0.15 150);
+  --color-warning: oklch(0.82 0.14 85);
+  --color-error: oklch(0.68 0.18 25);
+
+  --rounded-box: 0.75rem;
+  --rounded-btn: 0.5rem;
+  --rounded-badge: 1rem;
+  --animation-btn: 0.2s;
+  --animation-input: 0.2s;
+  --btn-focus-scale: 0.98;
+  --tab-radius: 0.5rem;
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.7 0 0 / 0.25);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.5 0 0 / 0.4);
+}
+
+/* Utility: subtle glass effect */
+.glass-subtle {
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+}
+
+/* Editor-specific: category color strips */
+.category-strip-base {
+  border-left: 3px solid oklch(0.70 0.14 230);
+}
+.category-strip-mode {
+  border-left: 3px solid oklch(0.65 0.18 300);
+}
+.category-strip-scene {
+  border-left: 3px solid oklch(0.70 0.16 160);
+}
+
+/* JSON code block */
+.json-view {
+  font-variant-ligatures: none;
+  tab-size: 2;
+}
+.json-view .json-key {
+  color: oklch(0.60 0.18 260);
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "florithm-challenge-config/v1",
+  "objclass": "StarChallengeKillZombiesInTime",
+  "metadata": { "title": "限时击杀", "description": "在指定时间内击杀僵尸" },
+  "initialData": {"ZombiesToKill":10,"Time":10},
+  "fields": [{"key":"ZombiesToKill","type":"number","label":"击杀数量","numberType":"int","min":1,"max":100,"default":10},{"key":"Time","type":"number","label":"限制时间","numberType":"int","min":1,"max":300,"default":10}]
+}

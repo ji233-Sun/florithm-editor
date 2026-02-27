@@ -1,0 +1,29 @@
+{
+  "$schema": "florithm-event-config/v1",
+  "objclass": "SpawnModernPortalsWaveActionProps",
+  "metadata": {
+    "title": "传送门",
+    "description": "在指定位置召唤时空传送门",
+    "icon": "hourglass",
+    "color": "#FF9800",
+    "darkColor": "#FFCC80",
+    "defaultAlias": "PortalEvent",
+    "category": "action"
+  },
+  "initialData": {
+    "PortalType": "egypt",
+    "PortalColumn": 5,
+    "PortalRow": 3,
+    "SpawnEffect": "",
+    "SpawnSoundID": "",
+    "IgnoreGraveStone": false
+  },
+  "fields": [
+    { "key": "PortalType", "type": "string", "label": "传送门类型", "description": "传送门的外观类型", "default": "egypt" },
+    { "key": "PortalColumn", "type": "number", "label": "列", "numberType": "int", "min": 0, "max": 9, "default": 5 },
+    { "key": "PortalRow", "type": "number", "label": "行", "numberType": "int", "min": 0, "max": 5, "default": 3 },
+    { "key": "SpawnEffect", "type": "string", "label": "生成特效", "default": "" },
+    { "key": "SpawnSoundID", "type": "string", "label": "生成音效", "default": "" },
+    { "key": "IgnoreGraveStone", "type": "boolean", "label": "忽略墓碑", "description": "是否忽略墓碑位置", "default": false }
+  ]
+}

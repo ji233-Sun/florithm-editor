@@ -1,0 +1,7 @@
+{
+  "$schema": "florithm-challenge-config/v1",
+  "objclass": "StarChallengeSunProduced",
+  "metadata": { "title": "生产阳光", "description": "生产指定数量的阳光" },
+  "initialData": {"TargetSun":0},
+  "fields": [{"key":"TargetSun","type":"number","label":"目标阳光","numberType":"int","min":0,"max":9999,"default":0}]
+}

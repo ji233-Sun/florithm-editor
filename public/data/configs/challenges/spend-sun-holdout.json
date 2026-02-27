@@ -1,0 +1,7 @@
+{
+  "$schema": "florithm-challenge-config/v1",
+  "objclass": "StarChallengeSpendSunHoldout",
+  "metadata": { "title": "坚持时间", "description": "在指定时间内花费阳光" },
+  "initialData": {"HoldoutSeconds":0},
+  "fields": [{"key":"HoldoutSeconds","type":"number","label":"坚持秒数","numberType":"int","min":0,"max":600,"default":0}]
+}

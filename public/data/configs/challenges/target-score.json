@@ -1,0 +1,7 @@
+{
+  "$schema": "florithm-challenge-config/v1",
+  "objclass": "StarChallengeTargetScore",
+  "metadata": { "title": "目标分数", "description": "达到指定分数" },
+  "initialData": {"Description":"","DescriptionFailure":"","DescriptiveName":"","TargetScore":20000},
+  "fields": [{"key":"TargetScore","type":"number","label":"目标分数","numberType":"int","min":0,"max":999999,"default":20000}]
+}

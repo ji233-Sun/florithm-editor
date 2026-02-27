@@ -1,0 +1,19 @@
+{
+  "$schema": "florithm-event-config/v1",
+  "objclass": "BlackHoleWaveActionProps",
+  "metadata": {
+    "title": "黑洞",
+    "description": "生成黑洞吸引所有植物",
+    "icon": "circle-dashed",
+    "color": "#7C30D9",
+    "darkColor": "#A179D2",
+    "defaultAlias": "BlackHoleEvent",
+    "category": "action"
+  },
+  "initialData": {
+    "ColNumPlantIsDragged": 0
+  },
+  "fields": [
+    { "key": "ColNumPlantIsDragged", "type": "number", "label": "拖拽列数", "description": "植物被拖拽的列数", "numberType": "int", "min": 0, "max": 9, "step": 1, "default": 0 }
+  ]
+}

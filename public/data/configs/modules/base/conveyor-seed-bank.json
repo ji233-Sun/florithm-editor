@@ -1,0 +1,59 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "ConveyorSeedBankProperties",
+  "metadata": {
+    "title": "传送带",
+    "description": "预设传送带植物类型和权重",
+    "icon": "move-horizontal",
+    "category": "base",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "ConveyorBelt",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "InitialPlantList": [],
+    "DropDelayConditions": [],
+    "SpeedConditions": []
+  },
+  "fields": [
+    {
+      "key": "InitialPlantList",
+      "type": "array",
+      "label": "植物列表",
+      "description": "传送带上的植物配置",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "PlantType", "type": "plant-ref", "label": "植物类型" },
+        { "key": "iLevel", "type": "number", "label": "等级", "numberType": "int", "min": 1, "max": 20, "default": null },
+        { "key": "Weight", "type": "number", "label": "权重", "numberType": "int", "min": 0, "max": 1000, "default": 100 },
+        { "key": "MaxCount", "type": "number", "label": "最大数量", "numberType": "int", "min": 0, "default": 0 },
+        { "key": "MaxWeightFactor", "type": "number", "label": "最大权重系数", "numberType": "float", "min": 0, "max": 10, "step": 0.1, "default": 1.0 },
+        { "key": "MinCount", "type": "number", "label": "最小数量", "numberType": "int", "min": 0, "default": 0 },
+        { "key": "MinWeightFactor", "type": "number", "label": "最小权重系数", "numberType": "float", "min": 0, "max": 10, "step": 0.1, "default": 1.0 }
+      ]
+    },
+    {
+      "key": "DropDelayConditions",
+      "type": "array",
+      "label": "掉落延迟条件",
+      "description": "根据包裹数量调整掉落延迟",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "Delay", "type": "number", "label": "延迟", "numberType": "int", "default": 0 },
+        { "key": "MaxPackets", "type": "number", "label": "最大包裹数", "numberType": "int", "default": 0 }
+      ]
+    },
+    {
+      "key": "SpeedConditions",
+      "type": "array",
+      "label": "速度条件",
+      "description": "根据包裹数量调整传送带速度",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "Speed", "type": "number", "label": "速度", "numberType": "int", "default": 0 },
+        { "key": "MaxPackets", "type": "number", "label": "最大包裹数", "numberType": "int", "default": 0 }
+      ]
+    }
+  ]
+}

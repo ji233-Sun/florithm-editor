@@ -1,0 +1,20 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "EvilDaveProperties",
+  "metadata": {
+    "title": "我是僵尸",
+    "description": "启用我是僵尸模式，需要配合僵尸选卡和预置植物",
+    "icon": "person-standing",
+    "category": "mode",
+    "isCore": false,
+    "allowMultiple": false,
+    "defaultAlias": "EvilDave",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "PlantDistance": 4
+  },
+  "fields": [
+    { "key": "PlantDistance", "type": "number", "label": "植物保留列数", "description": "植物一侧保留的列数", "numberType": "int", "min": 1, "max": 8, "step": 1, "default": 4 }
+  ]
+}

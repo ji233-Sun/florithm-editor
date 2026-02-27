@@ -1,0 +1,37 @@
+{
+  "$schema": "florithm-event-config/v1",
+  "objclass": "SpawnZombiesFromGroundSpawnerProps",
+  "metadata": {
+    "title": "地下出怪",
+    "description": "从地下生成僵尸",
+    "icon": "users",
+    "color": "#936457",
+    "darkColor": "#C2A197",
+    "defaultAlias": "GroundSpawner",
+    "category": "spawner"
+  },
+  "initialData": {
+    "ColumnStart": 6,
+    "ColumnEnd": 9,
+    "AdditionalPlantfood": null,
+    "SpawnPlantName": null,
+    "Zombies": []
+  },
+  "fields": [
+    { "key": "ColumnStart", "type": "number", "label": "起始列", "description": "地下出怪范围的起始列", "numberType": "int", "min": 0, "max": 9, "step": 1, "default": 6 },
+    { "key": "ColumnEnd", "type": "number", "label": "结束列", "description": "地下出怪范围的结束列", "numberType": "int", "min": 0, "max": 9, "step": 1, "default": 9 },
+    { "key": "AdditionalPlantfood", "type": "number", "label": "额外能量豆", "numberType": "int", "min": 0, "max": 10, "default": null },
+    { "key": "SpawnPlantName", "type": "array", "label": "生成植物", "itemType": "plant-ref", "default": null },
+    {
+      "key": "Zombies",
+      "type": "array",
+      "label": "僵尸列表",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "Type", "type": "zombie-ref", "label": "僵尸类型" },
+        { "key": "Level", "type": "number", "label": "等级", "numberType": "int", "default": null },
+        { "key": "Row", "type": "number", "label": "行", "numberType": "int", "default": null }
+      ]
+    }
+  ]
+}

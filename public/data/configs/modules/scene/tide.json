@@ -1,0 +1,20 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "TideProperties",
+  "metadata": {
+    "title": "潮水",
+    "description": "启用潮水系统，建议最后添加",
+    "icon": "droplets",
+    "category": "scene",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "Tide",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "StartingWaveLocation": 0
+  },
+  "fields": [
+    { "key": "StartingWaveLocation", "type": "number", "label": "初始潮水位置", "description": "潮水的初始列位置", "numberType": "int", "min": 0, "max": 9, "step": 1, "default": 0 }
+  ]
+}

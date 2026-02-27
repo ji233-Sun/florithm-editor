@@ -1,0 +1,7 @@
+{
+  "$schema": "florithm-challenge-config/v1",
+  "objclass": "StarChallengeUnfreezePlants",
+  "metadata": { "title": "解冻植物", "description": "解冻指定数量植物" },
+  "initialData": {"Count":0},
+  "fields": [{"key":"Count","type":"number","label":"解冻数量","numberType":"int","min":0,"max":50,"default":0}]
+}

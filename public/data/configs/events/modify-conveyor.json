@@ -1,0 +1,23 @@
+{
+  "$schema": "florithm-event-config/v1",
+  "objclass": "ModifyConveyorWaveActionProps",
+  "metadata": {
+    "title": "传送带变更",
+    "description": "修改传送带中的植物配置",
+    "icon": "shuffle",
+    "color": "#4AC380",
+    "darkColor": "#7CBD99",
+    "defaultAlias": "ModConveyorEvent"
+  },
+  "initialData": { "Add": [], "Remove": [] },
+  "fields": [
+    { "key": "Add", "type": "array", "label": "添加植物", "itemFields": [
+      { "key": "Type", "type": "plant-select", "label": "植物类型" },
+      { "key": "Weight", "type": "number", "label": "权重", "numberType": "int", "min": 0, "max": 1000, "default": 100 },
+      { "key": "MaxCount", "type": "number", "label": "最大数量", "numberType": "int", "min": 0, "default": 0 }
+    ]},
+    { "key": "Remove", "type": "array", "label": "移除植物", "itemFields": [
+      { "key": "Type", "type": "plant-select", "label": "植物类型" }
+    ]}
+  ]
+}

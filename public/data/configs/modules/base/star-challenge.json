@@ -1,0 +1,22 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "StarChallengeModuleProperties",
+  "metadata": {
+    "title": "三星挑战",
+    "description": "设置关卡限制和挑战目标",
+    "icon": "list-checks",
+    "category": "base",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "ChallengeModule",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "ChallengesAlwaysAvailable": true,
+    "Challenges": []
+  },
+  "fields": [
+    { "key": "ChallengesAlwaysAvailable", "type": "boolean", "label": "始终可用", "description": "挑战是否始终可用（不需要先通关）", "default": true },
+    { "key": "Challenges", "type": "array", "label": "挑战列表", "description": "三星挑战配置（二维数组，每组对应一颗星）", "itemType": "challenge-group" }
+  ]
+}

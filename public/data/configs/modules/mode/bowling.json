@@ -1,0 +1,20 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "BowlingMinigameProperties",
+  "metadata": {
+    "title": "沙滩保龄球",
+    "description": "设置禁止种植线并禁用铲子",
+    "icon": "gamepad-2",
+    "category": "mode",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "BowlingBulbMinigame",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "BowlingFoulLine": 2
+  },
+  "fields": [
+    { "key": "BowlingFoulLine", "type": "number", "label": "犯规线列", "description": "保龄球犯规线所在的列号", "numberType": "int", "min": 0, "max": 8, "step": 1, "default": 2 }
+  ]
+}

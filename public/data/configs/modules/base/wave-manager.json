@@ -1,0 +1,56 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "WaveManagerModuleProperties",
+  "metadata": {
+    "title": "波次管理器",
+    "description": "管理关卡出怪波次的核心引擎",
+    "icon": "waves",
+    "category": "base",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "NewWaves",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "WaveManagerProps": "RTID(WaveManagerProps@CurrentLevel)",
+    "DynamicZombies": [
+      {
+        "PointIncrementPerWave": 0,
+        "StartingPoints": 0,
+        "StartingWave": 0,
+        "ZombiePool": [],
+        "ZombieLevel": []
+      }
+    ],
+    "ManualStartup": null
+  },
+  "fields": [
+    {
+      "key": "WaveManagerProps",
+      "type": "rtid",
+      "label": "波次列表引用",
+      "description": "指向 WaveManagerProperties 对象的 RTID 引用"
+    },
+    {
+      "key": "ManualStartup",
+      "type": "boolean",
+      "label": "手动启动",
+      "description": "是否需要手动开始出怪（如坚不可摧模式）",
+      "default": null
+    },
+    {
+      "key": "DynamicZombies",
+      "type": "array",
+      "label": "动态僵尸组",
+      "description": "波次点数分配和僵尸池配置",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "PointIncrementPerWave", "type": "number", "label": "每波点数增量", "numberType": "int", "default": 0 },
+        { "key": "StartingPoints", "type": "number", "label": "起始点数", "numberType": "int", "default": 0 },
+        { "key": "StartingWave", "type": "number", "label": "起始波次", "numberType": "int", "default": 0 },
+        { "key": "ZombiePool", "type": "array", "label": "僵尸池", "itemType": "zombie-ref" },
+        { "key": "ZombieLevel", "type": "array", "label": "僵尸等级", "itemType": "number" }
+      ]
+    }
+  ]
+}

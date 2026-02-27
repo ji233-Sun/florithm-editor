@@ -1,0 +1,22 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "LastStandMinigameProperties",
+  "metadata": {
+    "title": "坚不可摧",
+    "description": "设置初始资源并启用布阵阶段",
+    "icon": "shield",
+    "category": "mode",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "LastStand",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "StartingSun": 2000,
+    "StartingPlantfood": 0
+  },
+  "fields": [
+    { "key": "StartingSun", "type": "number", "label": "初始阳光", "description": "坚不可摧模式开始时的阳光数量", "numberType": "int", "min": 0, "max": 99999, "step": 25, "default": 2000 },
+    { "key": "StartingPlantfood", "type": "number", "label": "初始能量豆", "description": "坚不可摧模式开始时的能量豆数量", "numberType": "int", "min": 0, "max": 99, "step": 1, "default": 0 }
+  ]
+}

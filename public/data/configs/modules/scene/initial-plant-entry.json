@@ -1,0 +1,33 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "InitialPlantEntryProperties",
+  "metadata": {
+    "title": "预置植物",
+    "description": "游戏开始时场上存在的植物",
+    "icon": "puzzle",
+    "category": "scene",
+    "isCore": true,
+    "allowMultiple": true,
+    "defaultAlias": "InitialPlants",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "Plants": []
+  },
+  "fields": [
+    {
+      "key": "Plants",
+      "type": "array",
+      "label": "植物列表",
+      "description": "预置植物的位置和类型",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "GridX", "type": "number", "label": "列", "numberType": "int", "min": 0, "max": 8, "default": 0 },
+        { "key": "GridY", "type": "number", "label": "行", "numberType": "int", "min": 0, "max": 5, "default": 0 },
+        { "key": "Level", "type": "number", "label": "等级", "numberType": "int", "min": 1, "max": 20, "default": 1 },
+        { "key": "Avatar", "type": "boolean", "label": "头像模式", "description": "是否为头像植物", "default": false },
+        { "key": "PlantTypes", "type": "array", "label": "植物类型", "itemType": "plant-ref" }
+      ]
+    }
+  ]
+}

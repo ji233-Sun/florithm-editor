@@ -1,0 +1,28 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "SunDropperProperties",
+  "metadata": {
+    "title": "阳光掉落",
+    "description": "控制天空掉落阳光的频率和初始延迟",
+    "icon": "sun",
+    "category": "base",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "DefaultSunDropper",
+    "defaultSource": "LevelModules"
+  },
+  "initialData": {
+    "InitialSunDropDelay": 2.0,
+    "SunCountdownBase": 4.25,
+    "SunCountdownMax": 9.5,
+    "SunCountdownIncreasePerSun": 0.1,
+    "SunCountdownRange": 2.75
+  },
+  "fields": [
+    { "key": "InitialSunDropDelay", "type": "number", "label": "初始掉落延迟", "description": "游戏开始后首次掉落阳光的延迟（秒）", "numberType": "float", "min": 0, "max": 60, "step": 0.25, "default": 2.0 },
+    { "key": "SunCountdownBase", "type": "number", "label": "基础倒计时", "description": "掉落阳光的基础间隔（秒）", "numberType": "float", "min": 0, "max": 30, "step": 0.25, "default": 4.25 },
+    { "key": "SunCountdownMax", "type": "number", "label": "最大倒计时", "description": "掉落阳光的最大间隔（秒）", "numberType": "float", "min": 0, "max": 60, "step": 0.5, "default": 9.5 },
+    { "key": "SunCountdownIncreasePerSun", "type": "number", "label": "每阳光增加", "description": "每收集一次阳光后倒计时增加的秒数", "numberType": "float", "min": 0, "max": 5, "step": 0.01, "default": 0.1 },
+    { "key": "SunCountdownRange", "type": "number", "label": "随机范围", "description": "掉落倒计时的随机浮动范围", "numberType": "float", "min": 0, "max": 10, "step": 0.25, "default": 2.75 }
+  ]
+}

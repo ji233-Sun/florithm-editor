@@ -1,0 +1,41 @@
+{
+  "$schema": "florithm-event-config/v1",
+  "objclass": "SpawnGravestonesWaveActionProps",
+  "metadata": {
+    "title": "障碍物生成",
+    "description": "在空位生成障碍物",
+    "icon": "archive",
+    "color": "#607D8B",
+    "darkColor": "#B0BEC5",
+    "defaultAlias": "GravestonesEvent",
+    "category": "action"
+  },
+  "initialData": {
+    "GravestonePool": [],
+    "SpawnPositionsPool": []
+  },
+  "fields": [
+    {
+      "key": "GravestonePool",
+      "type": "array",
+      "label": "障碍物池",
+      "description": "可生成的障碍物类型和数量",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "Type", "type": "griditem-ref", "label": "障碍物类型" },
+        { "key": "Count", "type": "number", "label": "数量", "numberType": "int", "min": 1, "max": 50, "default": 1 }
+      ]
+    },
+    {
+      "key": "SpawnPositionsPool",
+      "type": "array",
+      "label": "生成位置池",
+      "description": "障碍物可能生成的位置",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "mX", "type": "number", "label": "列", "numberType": "int", "min": 0, "max": 9, "default": 0 },
+        { "key": "mY", "type": "number", "label": "行", "numberType": "int", "min": 0, "max": 5, "default": 0 }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "InitialPlantProperties",
+  "metadata": {
+    "title": "预置植物(旧)",
+    "description": "旧版植物放置，支持冰冻植物",
+    "icon": "puzzle",
+    "category": "scene",
+    "isCore": true,
+    "allowMultiple": true,
+    "defaultAlias": "FrozenPlantPlacement",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "InitialPlantPlacements": [],
+    "IsInitialIntensiveCarrotPlacements": null
+  },
+  "fields": [
+    { "key": "IsInitialIntensiveCarrotPlacements", "type": "boolean", "label": "强力胡萝卜模式", "description": "是否为强力胡萝卜初始放置", "default": null },
+    {
+      "key": "InitialPlantPlacements",
+      "type": "array",
+      "label": "植物放置列表",
+      "description": "预置植物的位置和类型配置",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "GridX", "type": "number", "label": "列", "numberType": "int", "min": 0, "max": 8, "default": 0 },
+        { "key": "GridY", "type": "number", "label": "行", "numberType": "int", "min": 0, "max": 5, "default": 0 },
+        { "key": "TypeName", "type": "plant-select", "label": "植物类型" },
+        { "key": "Level", "type": "number", "label": "等级", "numberType": "int", "min": 1, "max": 20, "default": 1 },
+        { "key": "Condition", "type": "string", "label": "状态", "description": "如 icecubed 为冰冻状态", "default": null }
+      ]
+    }
+  ]
+}

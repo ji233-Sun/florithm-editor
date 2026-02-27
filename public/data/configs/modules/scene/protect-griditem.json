@@ -1,0 +1,35 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "ProtectTheGridItemChallengeProperties",
+  "metadata": {
+    "title": "保护障碍物",
+    "description": "设置必须保护的障碍物不被摧毁",
+    "icon": "shield-check",
+    "category": "scene",
+    "isCore": true,
+    "allowMultiple": true,
+    "defaultAlias": "ProtectTheGridItem",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "Description": "",
+    "MustProtectCount": 0,
+    "GridItems": []
+  },
+  "fields": [
+    { "key": "Description", "type": "string", "label": "描述", "description": "保护挑战的描述文字", "default": "" },
+    { "key": "MustProtectCount", "type": "number", "label": "最少保护数量", "description": "必须保护的障碍物最低数量", "numberType": "int", "min": 0, "max": 50, "step": 1, "default": 0 },
+    {
+      "key": "GridItems",
+      "type": "array",
+      "label": "保护障碍物列表",
+      "description": "需要保护的障碍物位置和类型",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "GridX", "type": "number", "label": "列", "numberType": "int", "min": 0, "max": 9, "default": 0 },
+        { "key": "GridY", "type": "number", "label": "行", "numberType": "int", "min": 0, "max": 5, "default": 0 },
+        { "key": "GridItemType", "type": "griditem-ref", "label": "障碍物类型" }
+      ]
+    }
+  ]
+}

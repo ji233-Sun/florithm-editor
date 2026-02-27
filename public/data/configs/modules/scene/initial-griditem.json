@@ -1,0 +1,31 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "InitialGridItemProperties",
+  "metadata": {
+    "title": "预置障碍物",
+    "description": "游戏开始时场上存在的障碍物",
+    "icon": "puzzle",
+    "category": "scene",
+    "isCore": true,
+    "allowMultiple": true,
+    "defaultAlias": "GridItemPlacement",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "InitialGridItemPlacements": []
+  },
+  "fields": [
+    {
+      "key": "InitialGridItemPlacements",
+      "type": "array",
+      "label": "障碍物放置列表",
+      "description": "预置障碍物的位置和类型",
+      "itemType": "object",
+      "itemFields": [
+        { "key": "GridX", "type": "number", "label": "列", "numberType": "int", "min": 0, "max": 9, "default": 0 },
+        { "key": "GridY", "type": "number", "label": "行", "numberType": "int", "min": 0, "max": 5, "default": 0 },
+        { "key": "TypeName", "type": "griditem-ref", "label": "障碍物类型" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "florithm-event-config/v1",
+  "objclass": "FairyTaleWindWaveActionProps",
+  "metadata": {
+    "title": "童话微风",
+    "description": "释放推动僵尸的微风",
+    "icon": "wind",
+    "color": "#BE5DBA",
+    "darkColor": "#BD99BB",
+    "defaultAlias": "WindEvent"
+  },
+  "initialData": { "Duration": 5.0, "VelocityScale": 2.0 },
+  "fields": [
+    { "key": "Duration", "type": "number", "label": "持续时间", "numberType": "float", "min": 0, "step": 0.5, "default": 5.0 },
+    { "key": "VelocityScale", "type": "number", "label": "风速倍率", "numberType": "float", "min": 0, "step": 0.5, "default": 2.0 }
+  ]
+}

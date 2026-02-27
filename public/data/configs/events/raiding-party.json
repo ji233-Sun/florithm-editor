@@ -1,0 +1,23 @@
+{
+  "$schema": "florithm-event-config/v1",
+  "objclass": "RaidingPartyZombieSpawnerProps",
+  "metadata": {
+    "title": "海盗登船",
+    "description": "召唤多个海盗僵尸登船",
+    "icon": "waves",
+    "color": "#FF9800",
+    "darkColor": "#FFCC80",
+    "defaultAlias": "RaidingPartyEvent",
+    "category": "spawner"
+  },
+  "initialData": {
+    "GroupSize": 5,
+    "SwashbucklerCount": 5,
+    "TimeBetweenGroups": 2
+  },
+  "fields": [
+    { "key": "GroupSize", "type": "number", "label": "组大小", "description": "每组登船的僵尸数量", "numberType": "int", "min": 1, "max": 20, "step": 1, "default": 5 },
+    { "key": "SwashbucklerCount", "type": "number", "label": "海盗数量", "description": "总共登船的海盗僵尸数量", "numberType": "int", "min": 1, "max": 50, "step": 1, "default": 5 },
+    { "key": "TimeBetweenGroups", "type": "number", "label": "组间隔", "description": "每组之间的时间间隔（秒）", "numberType": "int", "min": 0, "max": 30, "step": 1, "default": 2 }
+  ]
+}

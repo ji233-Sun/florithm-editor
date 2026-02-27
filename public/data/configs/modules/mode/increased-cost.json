@@ -1,0 +1,22 @@
+{
+  "$schema": "florithm-module-config/v1",
+  "objclass": "IncreasedCostModuleProperties",
+  "metadata": {
+    "title": "通货膨胀",
+    "description": "植物费用随种植次数递增",
+    "icon": "trending-up",
+    "category": "mode",
+    "isCore": true,
+    "allowMultiple": false,
+    "defaultAlias": "IncreasedCostModule",
+    "defaultSource": "CurrentLevel"
+  },
+  "initialData": {
+    "BaseCostIncreased": 25,
+    "MaxIncreasedCount": 10
+  },
+  "fields": [
+    { "key": "BaseCostIncreased", "type": "number", "label": "基础增加费用", "description": "每次种植后费用增加量", "numberType": "int", "min": 0, "max": 500, "step": 5, "default": 25 },
+    { "key": "MaxIncreasedCount", "type": "number", "label": "最大增加次数", "description": "费用增加的最大次数上限", "numberType": "int", "min": 0, "max": 100, "step": 1, "default": 10 }
+  ]
+}

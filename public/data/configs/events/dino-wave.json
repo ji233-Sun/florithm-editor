@@ -1,0 +1,23 @@
+{
+  "$schema": "florithm-event-config/v1",
+  "objclass": "DinoWaveActionProps",
+  "metadata": {
+    "title": "恐龙召唤",
+    "description": "召唤恐龙协助僵尸",
+    "icon": "paw-print",
+    "color": "#91B900",
+    "darkColor": "#A2B659",
+    "defaultAlias": "DinoTimeEvent",
+    "category": "action"
+  },
+  "initialData": {
+    "DinoRow": 2,
+    "DinoType": "raptor",
+    "DinoWaveDuration": 2
+  },
+  "fields": [
+    { "key": "DinoType", "type": "select", "label": "恐龙类型", "description": "召唤的恐龙种类", "options": ["raptor", "stego", "ptero", "tyranno", "ankylo"], "default": "raptor" },
+    { "key": "DinoRow", "type": "number", "label": "出现行", "description": "恐龙出现的行号", "numberType": "int", "min": 0, "max": 5, "step": 1, "default": 2 },
+    { "key": "DinoWaveDuration", "type": "number", "label": "持续波数", "description": "恐龙存在的波数", "numberType": "int", "min": 1, "max": 20, "step": 1, "default": 2 }
+  ]
+}

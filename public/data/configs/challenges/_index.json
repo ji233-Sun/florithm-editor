@@ -1,0 +1,20 @@
+{
+  "challenges": [
+    { "id": "beat-the-level", "objclass": "StarChallengeBeatTheLevel", "file": "beat-the-level.json" },
+    { "id": "save-mower", "objclass": "StarChallengeSaveMower", "file": "save-mower.json" },
+    { "id": "plantfood-nonuse", "objclass": "StarChallengePlantFoodNonuse", "file": "plantfood-nonuse.json" },
+    { "id": "plant-survive", "objclass": "StarChallengePlantSurvive", "file": "plant-survive.json" },
+    { "id": "zombie-distance", "objclass": "StarChallengeZombieDistance", "file": "zombie-distance.json" },
+    { "id": "sun-produced", "objclass": "StarChallengeSunProduced", "file": "sun-produced.json" },
+    { "id": "sun-used", "objclass": "StarChallengeSunUsed", "file": "sun-used.json" },
+    { "id": "spend-sun-holdout", "objclass": "StarChallengeSpendSunHoldout", "file": "spend-sun-holdout.json" },
+    { "id": "kill-zombies-in-time", "objclass": "StarChallengeKillZombiesInTime", "file": "kill-zombies-in-time.json" },
+    { "id": "zombie-speed", "objclass": "StarChallengeZombieSpeed", "file": "zombie-speed.json" },
+    { "id": "sun-reduced", "objclass": "StarChallengeSunReduced", "file": "sun-reduced.json" },
+    { "id": "plants-lost", "objclass": "StarChallengePlantsLost", "file": "plants-lost.json" },
+    { "id": "simultaneous-plants", "objclass": "StarChallengeSimultaneousPlants", "file": "simultaneous-plants.json" },
+    { "id": "unfreeze-plants", "objclass": "StarChallengeUnfreezePlants", "file": "unfreeze-plants.json" },
+    { "id": "blow-zombie", "objclass": "StarChallengeBlowZombie", "file": "blow-zombie.json" },
+    { "id": "target-score", "objclass": "StarChallengeTargetScore", "file": "target-score.json" }
+  ]
+}

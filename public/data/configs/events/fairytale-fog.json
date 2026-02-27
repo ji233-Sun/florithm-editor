@@ -1,0 +1,23 @@
+{
+  "$schema": "florithm-event-config/v1",
+  "objclass": "FairyTaleFogWaveActionProps",
+  "metadata": {
+    "title": "童话迷雾",
+    "description": "在场地上释放迷雾",
+    "icon": "cloud",
+    "color": "#BE5DBA",
+    "darkColor": "#BD99BB",
+    "defaultAlias": "FairyFogEvent"
+  },
+  "initialData": { "MovingTime": 3.0, "FogType": "fairy_tale_fog_lvl1", "Range": { "mX": 4, "mY": 0, "mWidth": 8, "mHeight": 5 } },
+  "fields": [
+    { "key": "MovingTime", "type": "number", "label": "移动时间", "numberType": "float", "min": 0, "step": 0.5, "default": 3.0 },
+    { "key": "FogType", "type": "string", "label": "迷雾类型", "default": "fairy_tale_fog_lvl1" },
+    { "key": "Range", "type": "object", "label": "范围", "fields": [
+      { "key": "mX", "type": "number", "label": "起始列", "numberType": "int", "default": 4 },
+      { "key": "mY", "type": "number", "label": "起始行", "numberType": "int", "default": 0 },
+      { "key": "mWidth", "type": "number", "label": "宽度", "numberType": "int", "default": 8 },
+      { "key": "mHeight", "type": "number", "label": "高度", "numberType": "int", "default": 5 }
+    ]}
+  ]
+}
