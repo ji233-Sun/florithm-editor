@@ -1,6 +1,6 @@
 # Florithm Editor
 
-一个基于 Next.js 的 PvZ2（植物大战僵尸 2 中文版）可视化关卡编辑器。本项目旨在将 Android 应用 [Z-Editor](ref/Z-Editor/) 的功能移植到 Web 平台。
+一个基于 Next.js 的 PvZ2（植物大战僵尸 2 中文版）可视化关卡编辑器。本项目旨在将 Android 应用 [Z-Editor](https://github.com/yhzxcv/Z-Editor) 的功能移植到 Web 平台。
 
 ## 项目简介
 
@@ -91,7 +91,7 @@ npm run start
 - **PvzObject** = `{ aliases?, objclass, objdata }` - `objclass` 决定 `objdata` 的结构
 - **RTID 引用** = `RTID(Alias@Source)` - 对象通过 alias 相互引用，`Source` 为 `CurrentLevel`（本地）或 `LevelModules`（内置）
 
-详细参考文档请查看 [ref/Z-Editor/Z-Editor-Analysis-Report.md](ref/Z-Editor/Z-Editor-Analysis-Report.md)
+详细参考文档请查看 [Z-Editor 分析报告](https://github.com/yhzxcv/Z-Editor)
 
 ## 项目结构
 
@@ -125,7 +125,7 @@ florithm-editor/
 
 ## 致谢
 
-- [Z-Editor](ref/Z-Editor/) - 原 Android 版编辑器项目
+- [Z-Editor](https://github.com/yhzxcv/Z-Editor) - 原 Android 版编辑器项目
 - [Next.js](https://nextjs.org/)
 - [Prisma](https://www.prisma.io/)
 - [daisyUI](https://daisyui.com/)

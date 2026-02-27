@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Florithm webapp — a web-based visual level editor for PvZ2 (Plants vs. Zombies 2 Chinese Edition). The goal is to port the functionality of the Android app [Z-Editor](ref/Z-Editor/) to the web. The reference project's analysis report (`ref/Z-Editor/Z-Editor-Analysis-Report.md`) contains the complete domain knowledge: PvZ2 level JSON structure, 37 module types, 19 event types, 66 scene maps, 9 level templates, and the RTID reference mechanism.
+Florithm webapp — a web-based visual level editor for PvZ2 (Plants vs. Zombies 2 Chinese Edition). The goal is to port the functionality of the Android app [Z-Editor](https://github.com/yhzxcv/Z-Editor) to the web. The reference project's analysis report (`ref/Z-Editor/Z-Editor-Analysis-Report.md`) contains the complete domain knowledge: PvZ2 level JSON structure, 37 module types, 19 event types, 66 scene maps, 9 level templates, and the RTID reference mechanism.
 
 ## Tech Stack
 
