@@ -524,7 +524,30 @@ export const useEditorStore = create<EditorState>((set, get) => {
   getSerializedJson: () => {
     const { parsed } = get();
     if (!parsed) return "{}";
-    const file = serializeLevel(parsed.allObjects);
+
+    // Collect aliases of modules referenced via @LevelModules —
+    // their object definitions are redundant in the level file
+    // because the game loads them from the built-in LevelModules.json.
+    const builtinAliases = new Set<string>();
+    if (parsed.levelDef) {
+      const ldData = parsed.levelDef.objdata as Record<string, unknown>;
+      const modules = (ldData.Modules as string[]) || [];
+      for (const rtid of modules) {
+        const info = parseRtid(rtid);
+        if (info && info.source === "LevelModules") {
+          builtinAliases.add(info.alias);
+        }
+      }
+    }
+
+    const filteredObjects = builtinAliases.size > 0
+      ? parsed.allObjects.filter((obj) => {
+          if (!obj.aliases) return true;
+          return !obj.aliases.some((a) => builtinAliases.has(a));
+        })
+      : parsed.allObjects;
+
+    const file = serializeLevel(filteredObjects);
     return JSON.stringify(file, null, 2);
   },
 };
