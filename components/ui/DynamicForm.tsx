@@ -1,6 +1,7 @@
 "use client";
 
 import { DynamicFormField } from "./DynamicFormField";
+import { PairedArrayField } from "./fields/PairedArrayField";
 import type { FieldDefinition } from "@/lib/pvz/types";
 
 interface DynamicFormProps {
@@ -23,14 +24,23 @@ export function DynamicForm({ fields, data, onChange }: DynamicFormProps) {
 
   return (
     <div className="space-y-4">
-      {fields.map((field) => (
-        <DynamicFormField
-          key={field.key}
-          field={field}
-          value={data[field.key] ?? field.default ?? null}
-          onChange={(value) => handleFieldChange(field.key, value)}
-        />
-      ))}
+      {fields.map((field) =>
+        field.type === "paired-array" ? (
+          <PairedArrayField
+            key={field.key}
+            field={field}
+            data={data}
+            onChange={onChange}
+          />
+        ) : (
+          <DynamicFormField
+            key={field.key}
+            field={field}
+            value={data[field.key] ?? field.default ?? null}
+            onChange={(value) => handleFieldChange(field.key, value)}
+          />
+        )
+      )}
     </div>
   );
 }

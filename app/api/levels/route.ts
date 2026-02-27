@@ -14,48 +14,15 @@ const createSchema = z.object({
 const DEFAULT_LEVEL_DATA = {
   objects: [
     {
-      aliases: ["LevelDefinition"],
       objclass: "LevelDefinition",
       objdata: {
-        Name: "",
-        LevelNumber: 1,
         Description: "",
-        StageModule: "RTID(EgyptStage@LevelModules)",
+        LevelNumber: 1,
         Loot: "RTID(DefaultLoot@LevelModules)",
+        Modules: [],
+        Name: "",
+        StageModule: "RTID(TutorialStage@LevelModules)",
         VictoryModule: "RTID(VictoryOutro@LevelModules)",
-        MusicType: "Mini_FirstEncounter",
-        Modules: [
-          "RTID(StandardIntro@LevelModules)",
-          "RTID(DefaultSunDropper@LevelModules)",
-          "RTID(ZombiesDeadWinCon@LevelModules)",
-          "RTID(DefaultZombiesAteBrains@LevelModules)",
-          "RTID(NewMower@LevelModules)",
-        ],
-      },
-    },
-    {
-      aliases: ["WaveManagerModuleProps"],
-      objclass: "WaveManagerModuleProperties",
-      objdata: {
-        WaveManagerProps: "RTID(WaveManagerProps@CurrentLevel)",
-      },
-    },
-    {
-      aliases: ["WaveManagerProps"],
-      objclass: "WaveManagerProperties",
-      objdata: {
-        WaveCount: 1,
-        FlagWaveInterval: 10,
-        MaxNextWaveHealthPercentage: 0.85,
-        MinNextWaveHealthPercentage: 0.7,
-        Waves: [["RTID(Wave1@CurrentLevel)"]],
-      },
-    },
-    {
-      aliases: ["Wave1"],
-      objclass: "SpawnZombiesJitteredWaveActionProps",
-      objdata: {
-        Zombies: [{ Type: "RTID(zombie_tutorial@ZombieTypes)" }],
       },
     },
   ],

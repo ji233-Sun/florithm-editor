@@ -810,6 +810,7 @@ export type FieldType =
   | "grid-position"
   | "array"
   | "object"
+  | "paired-array"
   | "textarea"
   | "color";
 
@@ -836,6 +837,11 @@ export interface FieldDefinition {
   itemFields?: FieldDefinition[];
   // Object sub-fields
   fields?: FieldDefinition[];
+  // Paired-array: multiple sibling keys whose arrays are index-aligned
+  pairedKeys?: {
+    key: string;
+    field: FieldDefinition;
+  }[];
 }
 
 export interface ModuleConfig {

@@ -2,6 +2,7 @@
 
 import { Plus, Trash2 } from "lucide-react";
 import { DynamicFormField } from "../DynamicFormField";
+import { PairedArrayField } from "./PairedArrayField";
 import type { FieldDefinition } from "@/lib/pvz/types";
 
 interface ArrayFieldProps {
@@ -77,24 +78,33 @@ export function ArrayField({ field, value, onChange }: ArrayFieldProps) {
             {field.itemFields && field.itemFields.length > 0 ? (
               // Object array items
               <div className="space-y-3">
-                {field.itemFields.map((subField) => (
-                  <DynamicFormField
-                    key={subField.key}
-                    field={subField}
-                    value={
-                      (item as Record<string, unknown>)?.[subField.key] ??
-                      subField.default ??
-                      null
-                    }
-                    onChange={(val) => {
-                      const updated = {
-                        ...(item as Record<string, unknown>),
-                        [subField.key]: val,
-                      };
-                      updateItem(index, updated);
-                    }}
-                  />
-                ))}
+                {field.itemFields.map((subField) =>
+                  subField.type === "paired-array" ? (
+                    <PairedArrayField
+                      key={subField.key}
+                      field={subField}
+                      data={(item as Record<string, unknown>) ?? {}}
+                      onChange={(val) => updateItem(index, val)}
+                    />
+                  ) : (
+                    <DynamicFormField
+                      key={subField.key}
+                      field={subField}
+                      value={
+                        (item as Record<string, unknown>)?.[subField.key] ??
+                        subField.default ??
+                        null
+                      }
+                      onChange={(val) => {
+                        const updated = {
+                          ...(item as Record<string, unknown>),
+                          [subField.key]: val,
+                        };
+                        updateItem(index, updated);
+                      }}
+                    />
+                  )
+                )}
               </div>
             ) : useTypedItem ? (
               // Typed primitive items (e.g., zombie-ref, plant-ref)

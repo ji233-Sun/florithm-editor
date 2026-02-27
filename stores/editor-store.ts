@@ -64,7 +64,8 @@ interface EditorState {
   removeModule: (alias: string) => void;
   updateModuleData: (alias: string, data: Record<string, unknown>) => void;
 
-  // WaveManager mutations (direct update on the WaveManagerProperties object)
+  // WaveManager mutations
+  addWaveManager: () => void;
   updateWaveManagerData: (data: Record<string, unknown>) => void;
 
   // Wave mutations
@@ -323,7 +324,66 @@ export const useEditorStore = create<EditorState>((set, get) => {
     set(markDirty({ parsed: cloneParsed(parsed) }));
   },
 
-  // --- WaveManager direct mutations ---
+  // --- WaveManager mutations ---
+  addWaveManager: () => {
+    const { parsed } = get();
+    if (!parsed?.levelDef) return;
+
+    // 1. Create WaveManagerModuleProperties
+    const moduleAlias = generateUniqueAlias("NewWaves", parsed.objectMap);
+    const moduleObj: PvzObject = {
+      aliases: [moduleAlias],
+      objclass: "WaveManagerModuleProperties",
+      objdata: {
+        WaveManagerProps: "RTID(WaveManagerProps@CurrentLevel)",
+        DynamicZombies: [
+          {
+            PointIncrementPerWave: 0,
+            StartingPoints: 0,
+            StartingWave: 0,
+            ZombiePool: [],
+            ZombieLevel: [],
+          },
+        ],
+        ManualStartup: null,
+      },
+    };
+
+    parsed.allObjects.push(moduleObj);
+    parsed.modules.push(moduleObj);
+    parsed.objectMap.set(moduleAlias, moduleObj);
+
+    // Add module RTID to LevelDefinition.Modules
+    const ldData = parsed.levelDef.objdata as Record<string, unknown>;
+    const modules = (ldData.Modules as string[]) || [];
+    modules.push(buildRtid(moduleAlias, "CurrentLevel"));
+    ldData.Modules = modules;
+
+    // 2. Create WaveManagerProperties (wave list)
+    const propsAlias = generateUniqueAlias("WaveManagerProps", parsed.objectMap);
+    const propsObj: PvzObject = {
+      aliases: [propsAlias],
+      objclass: "WaveManagerProperties",
+      objdata: {
+        WaveCount: 0,
+        FlagWaveInterval: 10,
+        MaxNextWaveHealthPercentage: 0.85,
+        MinNextWaveHealthPercentage: 0.7,
+        Waves: [],
+      },
+    };
+
+    parsed.allObjects.push(propsObj);
+    parsed.objectMap.set(propsAlias, propsObj);
+
+    // Update parsed references
+    parsed.waveManagerModule = moduleObj;
+    parsed.waveManager = propsObj;
+
+    const conflicts = checkConflicts(getModuleObjclasses(parsed));
+    set(markDirty({ parsed: cloneParsed(parsed), conflicts }));
+  },
+
   updateWaveManagerData: (data) => {
     const { parsed } = get();
     if (!parsed?.waveManager) return;
