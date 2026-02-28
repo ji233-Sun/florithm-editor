@@ -73,7 +73,7 @@ interface EditorState {
   removeWave: (index: number) => void;
 
   // Event mutations
-  addEventToWave: (waveIdx: number, config: EventConfig) => void;
+  addEventToWave: (waveIdx: number, config: EventConfig, dataOverrides?: Record<string, unknown>) => void;
   removeEventFromWave: (waveIdx: number, rtid: string) => void;
   updateEventData: (alias: string, data: Record<string, unknown>) => void;
 
@@ -441,7 +441,7 @@ export const useEditorStore = create<EditorState>((set, get) => {
   },
 
   // --- Event mutations ---
-  addEventToWave: (waveIdx, config) => {
+  addEventToWave: (waveIdx, config, dataOverrides) => {
     const { parsed } = get();
     if (!parsed?.waveManager) return;
 
@@ -487,7 +487,7 @@ export const useEditorStore = create<EditorState>((set, get) => {
     const newObj: PvzObject = {
       aliases: [alias],
       objclass: config.objclass,
-      objdata: { ...config.initialData },
+      objdata: { ...config.initialData, ...dataOverrides },
     };
 
     parsed.allObjects.push(newObj);

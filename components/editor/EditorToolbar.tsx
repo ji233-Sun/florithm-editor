@@ -9,11 +9,17 @@ import {
   AlertCircle,
   Pencil,
   Download,
+  Bot,
 } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 
-export function EditorToolbar() {
+interface EditorToolbarProps {
+  chatOpen: boolean;
+  onToggleChat: () => void;
+}
+
+export function EditorToolbar({ chatOpen, onToggleChat }: EditorToolbarProps) {
   const {
     levelName,
     setLevelName,
@@ -125,6 +131,16 @@ export function EditorToolbar() {
           : "Ctrl"}
         +S
       </kbd>
+
+      {/* AI button */}
+      <button
+        className={`btn btn-ghost btn-sm gap-1.5 ${chatOpen ? "btn-active" : ""}`}
+        onClick={onToggleChat}
+        title="AI 助手"
+      >
+        <Bot className="h-4 w-4" />
+        <span className="hidden sm:inline">AI</span>
+      </button>
 
       {/* Download button */}
       <button

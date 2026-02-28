@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useState } from "react";
 import { useEditorStore } from "@/stores/editor-store";
 import { EditorToolbar } from "./EditorToolbar";
 import { SettingsTab } from "./tabs/SettingsTab";
@@ -10,6 +10,7 @@ import { VaseBreakerTab } from "./tabs/VaseBreakerTab";
 import { IZombieTab } from "./tabs/IZombieTab";
 import { ZombossBattleTab } from "./tabs/ZombossBattleTab";
 import { JsonViewTab } from "./tabs/JsonViewTab";
+import { ChatPanel } from "./chat/ChatPanel";
 import type { EditorTab } from "@/stores/editor-store";
 import {
   Loader2,
@@ -49,6 +50,8 @@ export function EditorShell({ levelId }: EditorShellProps) {
     loadLevel,
     save,
   } = useEditorStore();
+
+  const [chatOpen, setChatOpen] = useState(false);
 
   useEffect(() => {
     loadLevel(levelId);
@@ -138,47 +141,54 @@ export function EditorShell({ levelId }: EditorShellProps) {
   ];
 
   return (
-    <div className="flex h-full flex-col">
-      <EditorToolbar />
+    <div className="flex h-full">
+      <div className="flex min-w-0 flex-1 flex-col">
+        <EditorToolbar
+          chatOpen={chatOpen}
+          onToggleChat={() => setChatOpen((v) => !v)}
+        />
 
-      {/* Tab bar */}
-      <div className="border-b border-base-300 bg-base-100">
-        <div className="flex gap-0.5 px-4">
-          {tabs
-            .filter((t) => t.show)
-            .map((tab) => {
-              const Icon = TAB_ICONS[tab.id];
-              const isActive = activeTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  className={`flex items-center gap-1.5 border-b-2 px-4 py-2.5 text-sm font-medium transition-colors ${
-                    isActive
-                      ? "border-primary text-primary"
-                      : "border-transparent text-base-content/50 hover:border-base-300 hover:text-base-content/80"
-                  }`}
-                  onClick={() => setActiveTab(tab.id)}
-                >
-                  <Icon className="h-4 w-4" />
-                  {tab.label}
-                </button>
-              );
-            })}
+        {/* Tab bar */}
+        <div className="border-b border-base-300 bg-base-100">
+          <div className="flex gap-0.5 px-4">
+            {tabs
+              .filter((t) => t.show)
+              .map((tab) => {
+                const Icon = TAB_ICONS[tab.id];
+                const isActive = activeTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    className={`flex items-center gap-1.5 border-b-2 px-4 py-2.5 text-sm font-medium transition-colors ${
+                      isActive
+                        ? "border-primary text-primary"
+                        : "border-transparent text-base-content/50 hover:border-base-300 hover:text-base-content/80"
+                    }`}
+                    onClick={() => setActiveTab(tab.id)}
+                  >
+                    <Icon className="h-4 w-4" />
+                    {tab.label}
+                  </button>
+                );
+              })}
+          </div>
+        </div>
+
+        {/* Tab content */}
+        <div className="flex-1 overflow-y-auto bg-base-200/50">
+          <div className="p-4 md:p-6">
+            {activeTab === "settings" && <SettingsTab />}
+            {activeTab === "modules" && <ModulesTab />}
+            {activeTab === "waves" && <WavesTab />}
+            {activeTab === "vasebreaker" && hasVaseBreaker && <VaseBreakerTab />}
+            {activeTab === "izombie" && hasIZombie && <IZombieTab />}
+            {activeTab === "zomboss" && hasZomboss && <ZombossBattleTab />}
+            {activeTab === "json" && <JsonViewTab />}
+          </div>
         </div>
       </div>
 
-      {/* Tab content */}
-      <div className="flex-1 overflow-y-auto bg-base-200/50">
-        <div className="p-4 md:p-6">
-          {activeTab === "settings" && <SettingsTab />}
-          {activeTab === "modules" && <ModulesTab />}
-          {activeTab === "waves" && <WavesTab />}
-          {activeTab === "vasebreaker" && hasVaseBreaker && <VaseBreakerTab />}
-          {activeTab === "izombie" && hasIZombie && <IZombieTab />}
-          {activeTab === "zomboss" && hasZomboss && <ZombossBattleTab />}
-          {activeTab === "json" && <JsonViewTab />}
-        </div>
-      </div>
+      {chatOpen && <ChatPanel onClose={() => setChatOpen(false)} />}
     </div>
   );
 }
