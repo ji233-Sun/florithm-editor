@@ -3,10 +3,19 @@
 import { useEffect, useState } from "react";
 import { useEditorStore } from "@/stores/editor-store";
 import { DynamicForm } from "@/components/ui/DynamicForm";
-import type { FieldDefinition } from "@/lib/pvz/types";
+import type { FieldDefinition, ParsedLevelData } from "@/lib/pvz/types";
 import { Settings2 } from "lucide-react";
 
 const EXCLUDED_KEYS = new Set(["Waves", "WaveCount"]);
+
+/**
+ * 检查关卡是否有传送带模块
+ * 遍历所有对象，查找 objclass 为 "ConveyorSeedBankProperties" 的对象
+ */
+function hasConveyorModule(parsed: ParsedLevelData | null): boolean {
+  if (!parsed?.allObjects) return false;
+  return parsed.allObjects.some((obj) => obj.objclass === "ConveyorSeedBankProperties");
+}
 
 export function WaveManagerForm() {
   const parsed = useEditorStore((s) => s.parsed);
@@ -14,6 +23,11 @@ export function WaveManagerForm() {
 
   const [fields, setFields] = useState<FieldDefinition[] | null>(null);
   const [expanded, setExpanded] = useState(false);
+  const [isConveyor, setIsConveyor] = useState(false);
+
+  useEffect(() => {
+    setIsConveyor(hasConveyorModule(parsed));
+  }, [parsed]);
 
   useEffect(() => {
     setFields(hardcodedWaveManagerFields);
@@ -36,7 +50,17 @@ export function WaveManagerForm() {
   if (!fields) return null;
 
   const data = parsed.waveManager.objdata as Record<string, unknown>;
-  const filteredFields = fields.filter((f) => !EXCLUDED_KEYS.has(f.key));
+
+  // 根据是否有传送带，过滤出对应的倒计时字段
+  const filteredFields = fields.filter((f) => {
+    if (EXCLUDED_KEYS.has(f.key)) return false;
+    // 根据传送带状态过滤对应的倒计时字段
+    if (isConveyor) {
+      return f.key !== "ZombieCountDownFirstWaveSecs"; // 传送带模式下隐藏普通模式字段
+    } else {
+      return f.key !== "ZombieCountDownFirstWaveConveyorSecs"; // 普通模式下隐藏传送带字段
+    }
+  });
 
   return (
     <div className="rounded-xl border border-base-300 bg-base-100 shadow-sm">
@@ -58,6 +82,12 @@ export function WaveManagerForm() {
             data={data}
             onChange={(newData) => updateWaveManagerData(newData)}
           />
+          {/* 提示文字 */}
+          <p className="mt-2 text-xs text-base-content/50">
+            {isConveyor
+              ? "检测到传送带模块，已应用传送带首波延迟设置（默认 5 秒）"
+              : "未检测到传送带模块，已应用普通首波延迟设置（默认 12 秒）"}
+          </p>
         </div>
       )}
     </div>
@@ -73,6 +103,7 @@ const hardcodedWaveManagerFields: FieldDefinition[] = [
     numberType: "int",
     min: 1,
     max: 100,
+    default: 10,
   },
   {
     key: "MaxNextWaveHealthPercentage",
@@ -83,6 +114,7 @@ const hardcodedWaveManagerFields: FieldDefinition[] = [
     min: 0,
     max: 1,
     step: 0.05,
+    default: 0.2,
   },
   {
     key: "MinNextWaveHealthPercentage",
@@ -92,41 +124,59 @@ const hardcodedWaveManagerFields: FieldDefinition[] = [
     min: 0,
     max: 1,
     step: 0.05,
+    default: 0.1,
   },
   {
     key: "SuppressFlagZombie",
     type: "boolean",
     label: "隐藏旗帜僵尸",
     nullable: true,
+    default: false,
   },
   {
     key: "ZombieCountDownFirstWaveSecs",
     type: "number",
     label: "首波倒计时（秒）",
+    description: "普通模式（自选卡）下第一波僵尸到来前的等待时间，默认 12 秒",
     nullable: true,
-    numberType: "float",
+    numberType: "int",
     min: 0,
+    default: 12,
   },
   {
     key: "ZombieCountDownFirstWaveConveyorSecs",
     type: "number",
     label: "传送带首波倒计时（秒）",
+    description: "传送带模式下第一波僵尸到来前的等待时间，默认 5 秒",
     nullable: true,
-    numberType: "float",
+    numberType: "int",
     min: 0,
+    default: 5,
   },
   {
     key: "ZombieCountDownHugeWaveDelay",
     type: "number",
-    label: "巨浪延迟（秒）",
+    label: "旗帜波延迟（秒）",
+    description: "旗帜波（红字提示）到僵尸刷新的间隔时间，默认 5 秒",
     nullable: true,
-    numberType: "float",
+    numberType: "int",
     min: 0,
+    default: 5,
   },
   {
     key: "LevelJam",
-    type: "string",
-    label: "LevelJam",
+    type: "select",
+    label: "背景音乐类型",
+    description: "仅在摩登世界有效，用于设定全局背景音乐为魔音僵尸提供技能",
     nullable: true,
+    options: [
+      { value: "", label: "默认/无 (None)" },
+      { value: "jam_pop", label: "流行 (Pop)" },
+      { value: "jam_rap", label: "说唱 (Rap)" },
+      { value: "jam_metal", label: "重金属 (Metal)" },
+      { value: "jam_punk", label: "朋克 (Punk)" },
+      { value: "jam_8bit", label: "街机 (8-Bit)" },
+    ],
+    default: "",
   },
 ];
