@@ -445,10 +445,43 @@ export const useEditorStore = create<EditorState>((set, get) => {
     const { parsed } = get();
     if (!parsed?.waveManager) return;
 
-    const alias = generateUniqueAlias(
-      config.metadata.defaultAlias,
-      parsed.objectMap
-    );
+    const wmData = parsed.waveManager.objdata as Record<string, unknown>;
+    const waves = (wmData.Waves as string[][]) || [];
+    if (waveIdx < 0 || waveIdx >= waves.length) return;
+
+    const waveRtids = waves[waveIdx];
+
+    // For unique events, check if one already exists in this wave
+    if (config.metadata.unique) {
+      for (const rtidStr of waveRtids) {
+        const info = parseRtid(rtidStr);
+        if (!info) continue;
+        const obj = parsed.objectMap.get(info.alias);
+        if (obj && obj.objclass === config.objclass) return; // already exists
+      }
+    }
+
+    // Generate alias based on unique flag
+    let alias: string;
+    if (config.metadata.unique) {
+      // Unique events: Wave{waveIdx}
+      alias = `Wave${waveIdx}`;
+    } else {
+      // Non-unique events: Wave{waveIdx}{defaultAlias}{seqInWave}
+      // Count how many events with the same objclass already exist in this wave
+      let sameTypeCount = 0;
+      for (const rtidStr of waveRtids) {
+        const info = parseRtid(rtidStr);
+        if (!info) continue;
+        const obj = parsed.objectMap.get(info.alias);
+        if (obj && obj.objclass === config.objclass) sameTypeCount++;
+      }
+      alias = `Wave${waveIdx}${config.metadata.defaultAlias}${sameTypeCount}`;
+    }
+
+    // Ensure alias is unique in the objectMap (fallback for edge cases)
+    alias = generateUniqueAlias(alias, parsed.objectMap);
+
     const rtid = buildRtid(alias, "CurrentLevel");
 
     const newObj: PvzObject = {
@@ -462,11 +495,7 @@ export const useEditorStore = create<EditorState>((set, get) => {
     parsed.waves.push(newObj);
     parsed.objectMap.set(alias, newObj);
 
-    const wmData = parsed.waveManager.objdata as Record<string, unknown>;
-    const waves = (wmData.Waves as string[][]) || [];
-    if (waveIdx >= 0 && waveIdx < waves.length) {
-      waves[waveIdx].push(rtid);
-    }
+    waveRtids.push(rtid);
 
     set(markDirty({ parsed: cloneParsed(parsed) }));
   },

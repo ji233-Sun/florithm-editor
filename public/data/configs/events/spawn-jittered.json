@@ -8,7 +8,8 @@
     "color": "#2196F3",
     "darkColor": "#90CAF9",
     "defaultAlias": "Jittered",
-    "category": "spawner"
+    "category": "spawner",
+    "unique": true
   },
   "initialData": {
     "Zombies": [],

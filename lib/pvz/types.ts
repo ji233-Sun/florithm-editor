@@ -871,6 +871,8 @@ export interface EventConfig {
     color: string;
     darkColor: string;
     defaultAlias: string;
+    category?: string;
+    unique?: boolean;
   };
   initialData: Record<string, unknown>;
   fields: FieldDefinition[];
