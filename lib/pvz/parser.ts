@@ -82,12 +82,10 @@ export function parseLevel(file: PvzLevelFile): ParsedLevelData {
   const events: PvzObject[] = [];
 
   for (const obj of allObjects) {
-    // Skip the three core singletons
-    if (
-      obj === levelDef ||
-      obj === waveManager ||
-      obj === waveManagerModule
-    ) {
+    // Skip LevelDefinition and WaveManagerProperties (they have dedicated fields).
+    // Note: waveManagerModule is NOT skipped — it is also a module referenced by
+    // LevelDefinition.Modules and must appear in the modules array.
+    if (obj === levelDef || obj === waveManager) {
       continue;
     }
 
