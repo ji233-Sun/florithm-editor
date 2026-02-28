@@ -22,8 +22,7 @@
     "WaveStartMessage": ""
   },
   "fields": [
-    { "key": "ColumnStart", "type": "number", "label": "起始列", "numberType": "int", "min": 0, "max": 9, "default": 5 },
-    { "key": "ColumnEnd", "type": "number", "label": "结束列", "numberType": "int", "min": 0, "max": 9, "default": 9 },
+    { "key": "_columnRange", "type": "range", "label": "出怪范围（列数）", "startKey": "ColumnStart", "endKey": "ColumnEnd", "startLabel": "起始列", "endLabel": "结束列", "min": 0, "max": 9, "description": "场地左边界为 0 列，右边界为 9 列" },
     { "key": "GroupSize", "type": "number", "label": "组大小", "numberType": "int", "min": 1, "max": 20, "default": 1 },
     { "key": "SpiderCount", "type": "number", "label": "小鬼数量", "numberType": "int", "min": 1, "max": 50, "default": 1 },
     { "key": "SpiderZombieName", "type": "string", "label": "僵尸名称", "default": "" },

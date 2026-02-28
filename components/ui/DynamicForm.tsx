@@ -2,7 +2,12 @@
 
 import { DynamicFormField } from "./DynamicFormField";
 import { PairedArrayField } from "./fields/PairedArrayField";
+import { DropConfigField } from "./fields/DropConfigField";
+import { RangeField } from "./fields/RangeField";
 import type { FieldDefinition } from "@/lib/pvz/types";
+
+/** Field types that receive the full data object instead of a single value */
+const COMPOSITE_FIELD_TYPES = new Set(["paired-array", "drop-config", "range"]);
 
 interface DynamicFormProps {
   fields: FieldDefinition[];
@@ -24,23 +29,48 @@ export function DynamicForm({ fields, data, onChange }: DynamicFormProps) {
 
   return (
     <div className="space-y-4">
-      {fields.map((field) =>
-        field.type === "paired-array" ? (
-          <PairedArrayField
-            key={field.key}
-            field={field}
-            data={data}
-            onChange={onChange}
-          />
-        ) : (
+      {fields.map((field) => {
+        if (COMPOSITE_FIELD_TYPES.has(field.type)) {
+          // Composite fields receive the full data object
+          switch (field.type) {
+            case "paired-array":
+              return (
+                <PairedArrayField
+                  key={field.key}
+                  field={field}
+                  data={data}
+                  onChange={onChange}
+                />
+              );
+            case "drop-config":
+              return (
+                <DropConfigField
+                  key={field.key}
+                  field={field}
+                  data={data}
+                  onChange={onChange}
+                />
+              );
+            case "range":
+              return (
+                <RangeField
+                  key={field.key}
+                  field={field}
+                  data={data}
+                  onChange={onChange}
+                />
+              );
+          }
+        }
+        return (
           <DynamicFormField
             key={field.key}
             field={field}
             value={data[field.key] ?? field.default ?? null}
             onChange={(value) => handleFieldChange(field.key, value)}
           />
-        )
-      )}
+        );
+      })}
     </div>
   );
 }

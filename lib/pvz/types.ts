@@ -812,7 +812,11 @@ export type FieldType =
   | "object"
   | "paired-array"
   | "textarea"
-  | "color";
+  | "color"
+  | "zombie-spawn-list"
+  | "jam-select"
+  | "drop-config"
+  | "range";
 
 export interface FieldDefinition {
   key: string;
@@ -842,6 +846,11 @@ export interface FieldDefinition {
     key: string;
     field: FieldDefinition;
   }[];
+  // Range: composite field for start/end value pair
+  startKey?: string;
+  endKey?: string;
+  startLabel?: string;
+  endLabel?: string;
 }
 
 export interface ModuleConfig {

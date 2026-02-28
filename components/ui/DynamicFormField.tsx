@@ -11,6 +11,8 @@ import { ZombieRtidField } from "./fields/ZombieRtidField";
 import { PlantRtidField } from "./fields/PlantRtidField";
 import { GridPositionField } from "./fields/GridPositionField";
 import { GridItemSelectField } from "./fields/GridItemSelectField";
+import { ZombieSpawnListField } from "./fields/ZombieSpawnListField";
+import { JamSelectField } from "./fields/JamSelectField";
 import type { FieldDefinition } from "@/lib/pvz/types";
 
 interface DynamicFormFieldProps {
@@ -60,6 +62,22 @@ export function DynamicFormField({ field, value, onChange }: DynamicFormFieldPro
         <GridPositionField
           field={field}
           value={value as { mX: number; mY: number }}
+          onChange={onChange}
+        />
+      );
+    case "zombie-spawn-list":
+      return (
+        <ZombieSpawnListField
+          field={field}
+          value={value as { Type: string; Level?: number | null; Row?: number | null }[]}
+          onChange={onChange}
+        />
+      );
+    case "jam-select":
+      return (
+        <JamSelectField
+          field={field}
+          value={value as string[] | null}
           onChange={onChange}
         />
       );
