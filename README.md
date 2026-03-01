@@ -2,17 +2,15 @@
 
 ![Florithm Logo](./public/logo.png)
 
-一个基于 Next.js 的 PvZ2（植物大战僵尸 2 中文版）可视化关卡编辑器。本项目旨在将 Android 应用 [Z-Editor](https://github.com/yhzxcv/Z-Editor) 的功能移植到 Web 平台。
+一个基于 Next.js 的 PvZ2（植物大战僵尸 2 中文版）可视化关卡编辑器。
+
+本项目采用完全模块的思路，通过JSON文件定义模块、关卡事件，并拥有AI驱动。
 
 ## 项目简介
 
 Florithm Editor 是一个功能丰富的 PvZ2 关卡编辑工具，支持：
 
-- 可视化编辑 37 种模块类型（SeedBank、WaveManager、ZombieSpawner 等）
-- 支持 19 种事件类型（SpawnZombie、StormEvent、Parachute 等）
-- 波次管理（WaveManager）和时间线编辑
-- 特殊模式支持：砸罐子（VaseBreaker）、我是僵尸（IZombie）、僵王战（Zomboss Battle）
-- RTID 引用机制支持
+- 可拓展的可视化表单解析引擎
 - 自动保存功能
 - 冲突检测
 
@@ -65,35 +63,6 @@ npm run dev
 npm run build
 npm run start
 ```
-
-## 主要功能
-
-### 自动保存
-编辑器会在用户修改后 3 秒自动保存，支持防抖。也可以使用 `Ctrl/Cmd+S` 手动保存。
-
-### 模块管理
-- 添加/删除/编辑 37 种不同的模块类型
-- 实时冲突检测，避免不兼容的模块组合
-
-### 波次编辑
-- 可视化波次时间线
-- 事件管理（添加、删除、编辑）
-- WaveManager 配置
-
-### 特殊模式
-- 砸罐子（VaseBreaker）预设编辑
-- 我是僵尸（IZombie）配置
-- 僵王战（Zomboss Battle）模块
-
-## 领域知识
-
-本项目的核心领域是 PvZ2 关卡 JSON 结构：
-
-- **关卡文件** = `{ objects: PvzObject[], version: 1 }`
-- **PvzObject** = `{ aliases?, objclass, objdata }` - `objclass` 决定 `objdata` 的结构
-- **RTID 引用** = `RTID(Alias@Source)` - 对象通过 alias 相互引用，`Source` 为 `CurrentLevel`（本地）或 `LevelModules`（内置）
-
-详细参考文档请查看 [Z-Editor 分析报告](https://github.com/yhzxcv/Z-Editor)
 
 ## 项目结构
 
