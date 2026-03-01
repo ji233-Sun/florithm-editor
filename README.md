@@ -1,5 +1,7 @@
 # Florithm Editor
 
+![Florithm Logo](./public/logo.png)
+
 一个基于 Next.js 的 PvZ2（植物大战僵尸 2 中文版）可视化关卡编辑器。本项目旨在将 Android 应用 [Z-Editor](https://github.com/yhzxcv/Z-Editor) 的功能移植到 Web 平台。
 
 ## 项目简介
