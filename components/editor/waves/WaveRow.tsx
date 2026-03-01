@@ -2,6 +2,7 @@
 
 import { useEditorStore } from "@/stores/editor-store";
 import { parseRtid } from "@/lib/pvz/rtid";
+import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import { EventChip } from "./EventChip";
 import { AddEventDialog } from "./AddEventDialog";
 import { EventEditDialog } from "./EventEditDialog";
@@ -27,6 +28,9 @@ export function WaveRow({
   const removeEventFromWave = useEditorStore((s) => s.removeEventFromWave);
 
   const [showAddEvent, setShowAddEvent] = useState(false);
+  const [deletingEventRtid, setDeletingEventRtid] = useState<string | null>(
+    null
+  );
   const [editingEvent, setEditingEvent] = useState<{
     alias: string;
     objclass: string;
@@ -85,9 +89,7 @@ export function WaveRow({
                   })
                 }
                 onRemove={() => {
-                  if (confirm("确定删除此事件？")) {
-                    removeEventFromWave(waveIndex, rtidStr);
-                  }
+                  setDeletingEventRtid(rtidStr);
                 }}
               />
             );
@@ -133,6 +135,22 @@ export function WaveRow({
           onClose={() => setEditingEvent(null)}
         />
       )}
+
+      <ConfirmDialog
+        open={deletingEventRtid !== null}
+        title="删除事件"
+        message="确定删除此事件？"
+        confirmText="删除"
+        cancelText="取消"
+        danger
+        onCancel={() => setDeletingEventRtid(null)}
+        onConfirm={() => {
+          if (deletingEventRtid) {
+            removeEventFromWave(waveIndex, deletingEventRtid);
+          }
+          setDeletingEventRtid(null);
+        }}
+      />
     </>
   );
 }

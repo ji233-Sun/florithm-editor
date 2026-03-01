@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { LevelList } from "@/components/level/LevelList";
 import { CreateLevelDialog } from "@/components/level/CreateLevelDialog";
+import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import { Plus, RefreshCw } from "lucide-react";
 
 interface Level {
@@ -18,6 +19,7 @@ export default function HomePage() {
   const [levels, setLevels] = useState<Level[]>([]);
   const [loading, setLoading] = useState(true);
   const [showCreate, setShowCreate] = useState(false);
+  const [deletingLevelId, setDeletingLevelId] = useState<string | null>(null);
 
   const fetchLevels = useCallback(async () => {
     setLoading(true);
@@ -36,12 +38,15 @@ export default function HomePage() {
     fetchLevels();
   }, [fetchLevels]);
 
-  async function handleDelete(id: string) {
-    if (!confirm("确定删除此关卡？")) return;
+  async function deleteLevel(id: string) {
     const res = await fetch(`/api/levels/${id}`, { method: "DELETE" });
     if (res.ok) {
       setLevels((prev) => prev.filter((l) => l.id !== id));
     }
+  }
+
+  async function handleDelete(id: string) {
+    setDeletingLevelId(id);
   }
 
   async function handleDuplicate(id: string) {
@@ -90,6 +95,22 @@ export default function HomePage() {
           }}
         />
       )}
+
+      <ConfirmDialog
+        open={deletingLevelId !== null}
+        title="删除关卡"
+        message="确定删除此关卡？"
+        confirmText="删除"
+        cancelText="取消"
+        danger
+        onCancel={() => setDeletingLevelId(null)}
+        onConfirm={async () => {
+          if (deletingLevelId) {
+            await deleteLevel(deletingLevelId);
+          }
+          setDeletingLevelId(null);
+        }}
+      />
     </>
   );
 }

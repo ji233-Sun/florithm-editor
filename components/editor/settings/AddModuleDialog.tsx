@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useEditorStore } from "@/stores/editor-store";
+import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import {
   loadModuleIndex,
   loadModuleConfig,
@@ -28,6 +29,10 @@ export function AddModuleDialog({ onClose }: AddModuleDialogProps) {
   const [entries, setEntries] = useState<ModuleDisplayEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [pendingConflict, setPendingConflict] = useState<{
+    entry: ModuleDisplayEntry;
+    messages: string;
+  } | null>(null);
 
   useEffect(() => {
     async function load() {
@@ -52,6 +57,12 @@ export function AddModuleDialog({ onClose }: AddModuleDialogProps) {
 
   const existingObjclasses = parsed?.modules.map((m) => m.objclass) || [];
 
+  async function applySelection(entry: ModuleDisplayEntry) {
+    const config = await loadModuleConfig(entry.objclass);
+    if (config) addModule(config);
+    onClose();
+  }
+
   async function handleSelect(entry: ModuleDisplayEntry) {
     if (!entry.allowMultiple && existingObjclasses.includes(entry.objclass)) {
       return;
@@ -60,14 +71,11 @@ export function AddModuleDialog({ onClose }: AddModuleDialogProps) {
     const conflicts = checkAddConflicts(existingObjclasses, entry.objclass);
     if (conflicts.length > 0) {
       const messages = conflicts.map((c) => c.message).join("\n");
-      if (!confirm(`添加此模块会产生冲突：\n\n${messages}\n\n是否继续？`)) {
-        return;
-      }
+      setPendingConflict({ entry, messages });
+      return;
     }
 
-    const config = await loadModuleConfig(entry.objclass);
-    if (config) addModule(config);
-    onClose();
+    await applySelection(entry);
   }
 
   const filtered = search
@@ -184,6 +192,26 @@ export function AddModuleDialog({ onClose }: AddModuleDialogProps) {
         )}
       </div>
       <div className="modal-backdrop" onClick={onClose} />
+
+      <ConfirmDialog
+        open={pendingConflict !== null}
+        title="模块冲突确认"
+        message={
+          pendingConflict
+            ? `添加此模块会产生冲突：\n\n${pendingConflict.messages}\n\n是否继续？`
+            : ""
+        }
+        confirmText="继续添加"
+        cancelText="取消"
+        danger
+        onCancel={() => setPendingConflict(null)}
+        onConfirm={async () => {
+          if (pendingConflict) {
+            await applySelection(pendingConflict.entry);
+          }
+          setPendingConflict(null);
+        }}
+      />
     </div>
   );
 }

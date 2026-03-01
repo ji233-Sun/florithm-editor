@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useEditorStore } from "@/stores/editor-store";
 import { loadModuleConfig } from "@/lib/pvz/config-loader";
+import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import { ModuleEditPanel } from "../shared/ModuleEditPanel";
 import { Trash2, X } from "lucide-react";
 
@@ -14,6 +15,7 @@ interface ModuleCardProps {
 export function ModuleCard({ alias, objclass }: ModuleCardProps) {
   const removeModule = useEditorStore((s) => s.removeModule);
   const [modalOpen, setModalOpen] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [title, setTitle] = useState(objclass);
   const [category, setCategory] = useState<string>("");
 
@@ -70,9 +72,7 @@ export function ModuleCard({ alias, objclass }: ModuleCardProps) {
             className="rounded-md p-1 text-base-content/30 transition-colors hover:bg-error/10 hover:text-error"
             onClick={(e) => {
               e.stopPropagation();
-              if (confirm(`确定删除模块「${title}」？`)) {
-                removeModule(alias);
-              }
+              setShowDeleteConfirm(true);
             }}
             title="删除模块"
           >
@@ -113,6 +113,20 @@ export function ModuleCard({ alias, objclass }: ModuleCardProps) {
           <div className="modal-backdrop" onClick={() => setModalOpen(false)} />
         </div>
       )}
+
+      <ConfirmDialog
+        open={showDeleteConfirm}
+        title="删除模块"
+        message={`确定删除模块「${title}」？`}
+        confirmText="删除"
+        cancelText="取消"
+        danger
+        onCancel={() => setShowDeleteConfirm(false)}
+        onConfirm={() => {
+          removeModule(alias);
+          setShowDeleteConfirm(false);
+        }}
+      />
     </>
   );
 }

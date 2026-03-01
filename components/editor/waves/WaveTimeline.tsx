@@ -2,13 +2,18 @@
 
 import { useEditorStore } from "@/stores/editor-store";
 import type { WaveManagerData } from "@/lib/pvz/types";
+import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import { WaveRow } from "./WaveRow";
 import { Plus, Waves } from "lucide-react";
+import { useState } from "react";
 
 export function WaveTimeline() {
   const parsed = useEditorStore((s) => s.parsed);
   const addWave = useEditorStore((s) => s.addWave);
   const removeWave = useEditorStore((s) => s.removeWave);
+  const [deletingWaveIndex, setDeletingWaveIndex] = useState<number | null>(
+    null
+  );
 
   if (!parsed?.waveManager) return null;
 
@@ -58,20 +63,32 @@ export function WaveTimeline() {
                 rtids={waveRtids}
                 isFlagWave={isFlagWave}
                 isLastWave={idx === waves.length - 1}
-                onRemove={() => {
-                  if (
-                    confirm(
-                      `确定删除第 ${idx + 1} 波？其中的所有事件也会被删除。`
-                    )
-                  ) {
-                    removeWave(idx);
-                  }
-                }}
+                onRemove={() => setDeletingWaveIndex(idx)}
               />
             );
           })}
         </div>
       )}
+
+      <ConfirmDialog
+        open={deletingWaveIndex !== null}
+        title="删除波次"
+        message={
+          deletingWaveIndex === null
+            ? ""
+            : `确定删除第 ${deletingWaveIndex + 1} 波？\n\n其中的所有事件也会被删除。`
+        }
+        confirmText="删除"
+        cancelText="取消"
+        danger
+        onCancel={() => setDeletingWaveIndex(null)}
+        onConfirm={() => {
+          if (deletingWaveIndex !== null) {
+            removeWave(deletingWaveIndex);
+          }
+          setDeletingWaveIndex(null);
+        }}
+      />
     </div>
   );
 }
