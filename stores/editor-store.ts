@@ -6,7 +6,6 @@ import type {
   PvzObject,
   PvzLevelFile,
   LevelDefinitionData,
-  WaveManagerData,
   ModuleConfig,
   EventConfig,
 } from "@/lib/pvz/types";
@@ -66,6 +65,7 @@ interface EditorState {
 
   // WaveManager mutations
   addWaveManager: () => void;
+  addWaveContainer: () => void;
   updateWaveManagerData: (data: Record<string, unknown>) => void;
 
   // Wave mutations
@@ -232,6 +232,13 @@ export const useEditorStore = create<EditorState>((set, get) => {
     const { parsed } = get();
     if (!parsed?.levelDef) return;
 
+    if (!config.metadata.allowMultiple) {
+      const exists = parsed.allObjects.some(
+        (obj) => obj.objclass === config.objclass
+      );
+      if (exists) return;
+    }
+
     const alias = generateUniqueAlias(
       config.metadata.defaultAlias,
       parsed.objectMap
@@ -250,6 +257,10 @@ export const useEditorStore = create<EditorState>((set, get) => {
     parsed.allObjects.push(newObj);
     parsed.modules.push(newObj);
     parsed.objectMap.set(alias, newObj);
+
+    if (config.objclass === "WaveManagerModuleProperties") {
+      parsed.waveManagerModule = newObj;
+    }
 
     // Add RTID to LevelDefinition.Modules
     const ldData = parsed.levelDef.objdata as Record<string, unknown>;
@@ -290,6 +301,10 @@ export const useEditorStore = create<EditorState>((set, get) => {
       return info?.alias !== alias;
     });
 
+    if (obj.objclass === "WaveManagerModuleProperties") {
+      parsed.waveManagerModule = null;
+    }
+
     const conflicts = checkConflicts(getModuleObjclasses(parsed));
 
     // If current tab depends on removed module, switch to settings
@@ -328,6 +343,22 @@ export const useEditorStore = create<EditorState>((set, get) => {
   addWaveManager: () => {
     const { parsed } = get();
     if (!parsed?.levelDef) return;
+    if (parsed.waveManagerModule) return;
+
+    let waveManagerObj =
+      parsed.waveManager ??
+      parsed.allObjects.find((o) => o.objclass === "WaveManagerProperties") ??
+      null;
+
+    if (waveManagerObj && !waveManagerObj.aliases?.[0]) {
+      const ensuredAlias = generateUniqueAlias("WaveManagerProps", parsed.objectMap);
+      waveManagerObj.aliases = [ensuredAlias];
+      parsed.objectMap.set(ensuredAlias, waveManagerObj);
+    }
+
+    const waveManagerRtid = waveManagerObj?.aliases?.[0]
+      ? buildRtid(waveManagerObj.aliases[0], "CurrentLevel")
+      : "RTID(WaveManagerProps@CurrentLevel)";
 
     // 1. Create WaveManagerModuleProperties
     const moduleAlias = generateUniqueAlias("NewWaves", parsed.objectMap);
@@ -335,7 +366,7 @@ export const useEditorStore = create<EditorState>((set, get) => {
       aliases: [moduleAlias],
       objclass: "WaveManagerModuleProperties",
       objdata: {
-        WaveManagerProps: "RTID(WaveManagerProps@CurrentLevel)",
+        WaveManagerProps: waveManagerRtid,
         DynamicZombies: [
           {
             PointIncrementPerWave: 0,
@@ -359,7 +390,38 @@ export const useEditorStore = create<EditorState>((set, get) => {
     modules.push(buildRtid(moduleAlias, "CurrentLevel"));
     ldData.Modules = modules;
 
-    // 2. Create WaveManagerProperties (wave list)
+    // 2. Create WaveManagerProperties (wave list) only when missing
+    if (!waveManagerObj) {
+      const propsAlias = generateUniqueAlias("WaveManagerProps", parsed.objectMap);
+      const propsObj: PvzObject = {
+        aliases: [propsAlias],
+        objclass: "WaveManagerProperties",
+        objdata: {
+          WaveCount: 0,
+          FlagWaveInterval: 10,
+          MaxNextWaveHealthPercentage: 0.85,
+          MinNextWaveHealthPercentage: 0.7,
+          Waves: [],
+        },
+      };
+
+      parsed.allObjects.push(propsObj);
+      parsed.objectMap.set(propsAlias, propsObj);
+      waveManagerObj = propsObj;
+    }
+
+    // Update parsed references
+    parsed.waveManagerModule = moduleObj;
+    parsed.waveManager = waveManagerObj;
+
+    const conflicts = checkConflicts(getModuleObjclasses(parsed));
+    set(markDirty({ parsed: cloneParsed(parsed), conflicts }));
+  },
+
+  addWaveContainer: () => {
+    const { parsed } = get();
+    if (!parsed?.waveManagerModule || parsed.waveManager) return;
+
     const propsAlias = generateUniqueAlias("WaveManagerProps", parsed.objectMap);
     const propsObj: PvzObject = {
       aliases: [propsAlias],
@@ -376,12 +438,14 @@ export const useEditorStore = create<EditorState>((set, get) => {
     parsed.allObjects.push(propsObj);
     parsed.objectMap.set(propsAlias, propsObj);
 
-    // Update parsed references
-    parsed.waveManagerModule = moduleObj;
+    parsed.waveManagerModule.objdata = {
+      ...(parsed.waveManagerModule.objdata as Record<string, unknown>),
+      WaveManagerProps: buildRtid(propsAlias, "CurrentLevel"),
+    };
+
     parsed.waveManager = propsObj;
 
-    const conflicts = checkConflicts(getModuleObjclasses(parsed));
-    set(markDirty({ parsed: cloneParsed(parsed), conflicts }));
+    set(markDirty({ parsed: cloneParsed(parsed) }));
   },
 
   updateWaveManagerData: (data) => {
